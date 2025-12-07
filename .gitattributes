@@ -1,0 +1,11 @@
+# Linguist language detection
+*.py linguist-detectable=true
+*.js linguist-detectable=true
+*.jsx linguist-detectable=true
+*.css linguist-detectable=true
+*.bat linguist-detectable=false
+*.md linguist-documentation=true
+
+# Set primary languages
+backend/** linguist-language=Python
+frontend/** linguist-language=JavaScript
