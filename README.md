@@ -12,19 +12,12 @@ A full-stack web application for Bangla movie review sentiment analysis with Exp
 
 ## 🚀 Quick Start
 
-### Windows (Easiest)
 ```bash
-# Terminal 1: Start Backend
-start_backend.bat
-
-# Terminal 2: Start Frontend
-start_frontend.bat
-
-# Open browser: http://localhost:3000
+run_all.bat    # Starts both servers
 ```
+Then open: **http://localhost:3000**
 
-### Manual Setup
-See **[SETUP_GUIDE.md](SETUP_GUIDE.md)** for detailed instructions.
+See **[START_HERE.md](START_HERE.md)** for details.
 
 ---
 
@@ -61,11 +54,10 @@ See **[SETUP_GUIDE.md](SETUP_GUIDE.md)** for detailed instructions.
 
 ```
 movieReview/
-├── backend/          # Django REST API + ML Model
+├── backend/          # Django REST API + ML
 ├── frontend/         # React Application
-├── ml_model/         # ML Model Documentation
+├── ml_model/         # ML Documentation
 ├── START_HERE.md     # 👈 Start here!
-├── QUICK_START.md    # Fast setup guide
 ├── SETUP_GUIDE.md    # Detailed setup
 └── API_DOCUMENTATION.md  # API reference
 ```
@@ -195,124 +187,46 @@ npm start
 
 | Document | Description |
 |----------|-------------|
-| **[START_HERE.md](START_HERE.md)** | 👈 **Begin here!** Quick overview |
-| **[QUICK_START.md](QUICK_START.md)** | Fastest way to get running |
-| **[SETUP_GUIDE.md](SETUP_GUIDE.md)** | Detailed installation guide |
-| **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** | Architecture & design details |
-| **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** | API endpoints & examples |
+| **[START_HERE.md](START_HERE.md)** | 👈 Quick start guide |
+| **[SETUP_GUIDE.md](SETUP_GUIDE.md)** | Detailed installation |
+| **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** | API reference |
 
 ---
 
-## 🔮 Future Enhancements
 
-- [ ] User authentication & authorization
-- [ ] Export results to PDF/CSV
-- [ ] Batch analysis (upload CSV)
-- [ ] Train custom Bangla model
-- [ ] Deploy to cloud (AWS/Heroku)
-- [ ] Mobile app version
-- [ ] Sentiment trends dashboard
 
 ---
 
 ## 🐛 Troubleshooting
 
-**Backend won't start?**
-- Check Python version: `python --version`
-- Verify port 8000 is free
-- Activate virtual environment
-
-**Frontend won't start?**
-- Check Node version: `node --version`
-- Delete `node_modules` and reinstall
-- Verify port 3000 is free
-
-**Analysis is slow?**
-- First analysis: 10-20 seconds (model loading)
-- Subsequent: 2-5 seconds (normal)
-- Use GPU for 5-10x speedup
-
----
-
-## 📝 Git Repositories
-
-Each section has its own Git repository for modular development:
-- **Main**: Overall project coordination
-- **Backend**: Django API and ML service
-- **Frontend**: React application
-- **ML Model**: Model documentation
-
----
-
-## 🤝 Contributing
-
-This is an academic research project. Contributions welcome!
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
----
-
-## 📄 License
-
-MIT License - Free for academic and research use.
-
-```
-Copyright (c) 2024 Bangla Sentiment Analysis Project
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+```bash
+clean_all.bat    # Clean everything
+build_all.bat    # Rebuild
+run_all.bat      # Start
 ```
 
 ---
 
-## 🌟 Acknowledgments
 
-- **HuggingFace** - Pre-trained BERT model
-- **LIME** - Explainability framework
-- **Django** - Web framework
-- **React** - Frontend library
-- **Academic Community** - Research inspiration
 
 ---
 
-## 📞 Support
 
-For issues or questions:
-1. Check documentation files
-2. Review error messages
-3. Test API endpoints directly
-4. Verify both servers are running
 
 ---
 
-## 🎉 Status
 
-✅ **Backend**: Complete - Django REST API with ML integration
-✅ **Frontend**: Complete - React UI with modern design
-✅ **Database**: Complete - SQLite with history tracking
-✅ **ML Model**: Complete - BERT + LIME explainability
-✅ **Documentation**: Complete - Comprehensive guides
-✅ **Git**: Complete - Version control for all sections
 
 ---
 
-**Built with ❤️ for academic research in Bangla NLP and Explainable AI**
 
-*A full-stack demonstration of transparent AI decision-making for sentiment analysis*
 
 ---
 
-## 🚀 Ready to Start?
 
-👉 **[START_HERE.md](START_HERE.md)** - Begin your journey!
+
+---
+
+---
+
+**Built for Bangla NLP and Explainable AI research**
