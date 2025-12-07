@@ -4,12 +4,13 @@
 
 ---
 
-## ⚡ Super Quick Start (3 Commands)
+## ⚡ Super Quick Start
 
+### Option A: With Git (3 Commands)
 ```bash
 # 1. Clone the repository
-git clone <your-repo-url>
-cd movieReview
+git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+cd BanglaMovieReviewer
 
 # 2. Run everything
 run_all.bat
@@ -17,6 +18,13 @@ run_all.bat
 # 3. Open browser
 # http://localhost:3000
 ```
+
+### Option B: Download ZIP (No Git Required)
+1. **Download**: Go to https://github.com/alphapie77/BanglaMovieReviewer
+2. **Extract**: Click "Code" → "Download ZIP" → Extract folder
+3. **Open Terminal**: Right-click extracted folder → "Open in Terminal" or "Command Prompt here"
+4. **Run**: Type `run_all.bat` and press Enter
+5. **Browse**: Open http://localhost:3000
 
 **That's it!** ✅ The application will:
 - Install all dependencies automatically
@@ -62,11 +70,23 @@ git --version
 # Should show: git version 2.x.x
 ```
 
-### Step 2: Clone Repository
+### Step 2: Get the Code
+
+**Method 1: Clone with Git (Recommended)**
 ```bash
-git clone <your-repo-url>
-cd movieReview
+git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+cd BanglaMovieReviewer
 ```
+
+**Method 2: Download ZIP (No Git Required)**
+1. Visit: https://github.com/alphapie77/BanglaMovieReviewer
+2. Click green "Code" button
+3. Select "Download ZIP"
+4. Extract the downloaded file
+5. Navigate to extracted folder in terminal:
+   ```bash
+   cd path/to/BanglaMovieReviewer
+   ```
 
 ### Step 3: Run Application
 

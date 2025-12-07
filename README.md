@@ -12,11 +12,19 @@ A modern full-stack web application for analyzing Bangla movie reviews with AI-p
 
 ## 🚀 Quick Start (3 Steps)
 
-### Step 1: Clone Repository
+### Step 1: Get the Code
+
+**Option A: Clone with Git**
 ```bash
-git clone <your-repo-url>
-cd movieReview
+git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+cd BanglaMovieReviewer
 ```
+
+**Option B: Download ZIP**
+1. Go to: https://github.com/alphapie77/BanglaMovieReviewer
+2. Click green "Code" button → "Download ZIP"
+3. Extract the ZIP file
+4. Open terminal in extracted folder
 
 ### Step 2: Run Application
 ```bash
@@ -192,8 +200,8 @@ See **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** for details.
 **Windows:**
 ```bash
 # Clone repository
-git clone <your-repo-url>
-cd movieReview
+git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+cd BanglaMovieReviewer
 
 # Run everything
 run_all.bat
