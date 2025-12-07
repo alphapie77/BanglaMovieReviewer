@@ -1,26 +1,7 @@
 @echo off
-echo ========================================
-echo Starting Full Application
-echo ========================================
-echo.
-
-echo Starting Backend in new window...
-start "Backend Server" cmd /k "start_backend.bat"
-
-echo Waiting 5 seconds for backend to start...
-timeout /t 5 /nobreak >nul
-
-echo Starting Frontend in new window...
-start "Frontend Server" cmd /k "start_frontend.bat"
-
-echo.
-echo ========================================
-echo Both servers are starting!
+start "Backend" cmd /k "cd backend && (if not exist venv python -m venv venv) && venv\Scripts\activate && (if not exist venv\Lib\site-packages\django pip install -r requirements.txt) && (if not exist db.sqlite3 python manage.py migrate) && python manage.py runserver"
+timeout /t 3 /nobreak >nul
+start "Frontend" cmd /k "cd frontend && (if not exist node_modules npm install) && npm start"
 echo.
 echo Backend: http://localhost:8000
 echo Frontend: http://localhost:3000
-echo.
-echo Check the new terminal windows
-echo Close this window when done
-echo ========================================
-pause
