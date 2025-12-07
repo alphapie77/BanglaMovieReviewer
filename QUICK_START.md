@@ -2,41 +2,57 @@
 
 ## Easiest Way to Run
 
-### Option 1: Use Batch Scripts (Recommended)
+### Option 1: Run Everything at Once (Easiest!)
+```bash
+run_all.bat
+```
+This opens both servers in separate windows automatically!
+
+### Option 2: Run Separately (Recommended for Development)
 
 1. **Start Backend** (in first terminal):
-   ```
-   Double-click: start_backend.bat
-   ```
-   OR run in terminal:
    ```bash
    start_backend.bat
    ```
 
 2. **Start Frontend** (in second terminal):
-   ```
-   Double-click: start_frontend.bat
-   ```
-   OR run in terminal:
    ```bash
    start_frontend.bat
    ```
 
 3. **Open Browser**: http://localhost:3000
 
+### Option 3: First Time Setup
+```bash
+build_all.bat
+```
+Then use Option 1 or 2 to run
+
 ### Option 2: Manual Setup
 
 See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed instructions.
 
+## Available Scripts
+
+| Script | Purpose |
+|--------|--------|
+| `run_all.bat` | Start both servers at once (easiest!) |
+| `start_backend.bat` | Start Django backend only |
+| `start_frontend.bat` | Start React frontend only |
+| `build_all.bat` | Clean build everything from scratch |
+| `build_backend.bat` | Build backend only |
+| `build_frontend.bat` | Build frontend only |
+| `clean_all.bat` | Remove all build files |
+
 ## First Time Setup
 
-The batch scripts will automatically:
+The scripts will automatically:
 - ✅ Create virtual environment
 - ✅ Install all dependencies
 - ✅ Run database migrations
 - ✅ Start the servers
 
-**Note**: First run will take 5-10 minutes to install everything.
+**Note**: First run takes 5-10 minutes to install everything.
 
 ## What You'll See
 
@@ -85,7 +101,14 @@ taskkill /PID <PID> /F
 **Dependencies not installing?**
 - Make sure you have Python 3.8+ and Node.js 16+
 - Check your internet connection
-- Try running as administrator
+- Try: `clean_all.bat` then `build_all.bat`
+
+**Something broken?**
+```bash
+clean_all.bat    # Clean everything
+build_all.bat    # Rebuild from scratch
+run_all.bat      # Start both servers
+```
 
 ## Next Steps
 
