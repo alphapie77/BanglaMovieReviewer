@@ -1,6 +1,6 @@
-# 🎬 Bangla Movie Review Sentiment Analysis - Full Stack
+# 🎬 সিনেমা রিভিউ পরীক্ষক | Bangla Movie Review Sentiment Analyzer
 
-A full-stack web application for Bangla movie review sentiment analysis with Explainable AI.
+A modern full-stack web application for analyzing Bangla movie reviews with AI-powered sentiment detection and explainability features.
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
@@ -10,14 +10,25 @@ A full-stack web application for Bangla movie review sentiment analysis with Exp
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (3 Steps)
 
+### Step 1: Clone Repository
 ```bash
-run_all.bat    # Starts both servers
+git clone <your-repo-url>
+cd movieReview
 ```
-Then open: **http://localhost:3000**
 
-See **[START_HERE.md](START_HERE.md)** for details.
+### Step 2: Run Application
+```bash
+run_all.bat    # Windows (starts both servers automatically)
+```
+
+### Step 3: Open Browser
+```
+http://localhost:3000
+```
+
+**First time?** Model will download automatically (~500MB, takes 2-5 minutes). See **[docs/START_HERE.md](docs/START_HERE.md)** for detailed setup.
 
 ---
 
@@ -54,12 +65,32 @@ See **[START_HERE.md](START_HERE.md)** for details.
 
 ```
 movieReview/
-├── backend/          # Django REST API + ML
-├── frontend/         # React Application
-├── ml_model/         # ML Documentation
-├── START_HERE.md     # 👈 Start here!
-├── SETUP_GUIDE.md    # Detailed setup
-└── API_DOCUMENTATION.md  # API reference
+├── backend/                    # Django REST API + ML Model
+│   ├── config/                 # Django settings
+│   ├── sentiment_api/          # Main API app
+│   ├── requirements.txt        # Python dependencies
+│   ├── test_model.py           # ML model test
+│   └── test_api.py             # API test
+│
+├── frontend/                   # React Application
+│   ├── src/
+│   │   ├── pages/              # Main pages (Home, Analyzer, Result, etc.)
+│   │   ├── components/         # Reusable components
+│   │   ├── services/           # API integration
+│   │   └── App.js              # Router setup
+│   └── package.json            # Node dependencies
+│
+├── docs/                       # 📚 Documentation
+│   ├── START_HERE.md           # Quick start guide
+│   ├── SETUP_GUIDE.md          # Detailed installation
+│   ├── API_DOCUMENTATION.md    # API reference
+│   ├── TROUBLESHOOTING.md      # Common issues
+│   ├── QUICK_FIX.md            # ML model fixes
+│   └── PROJECT_STRUCTURE.md    # Complete structure
+│
+├── ml_model/                   # ML model documentation
+├── *.bat                       # Windows scripts
+└── README.md                   # This file
 ```
 
 ---
@@ -101,7 +132,7 @@ GET  /api/sentiment/           # List all analyses
 GET  /api/sentiment/{id}/      # Get specific analysis
 ```
 
-See **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** for details.
+See **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** for details.
 
 ---
 
@@ -144,25 +175,33 @@ See **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** for details.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation Guide
 
 ### Prerequisites
-- Python 3.8+
-- Node.js 16+
-- Git
-- 4GB+ RAM
-
-### Installation
-
-**Option 1: Quick Start (Windows)**
-```bash
-start_backend.bat    # Terminal 1
-start_frontend.bat   # Terminal 2
+```
+✓ Python 3.8 or higher
+✓ Node.js 16 or higher  
+✓ Git
+✓ 4GB+ RAM (for ML model)
+✓ 2GB+ free disk space
+✓ Internet connection (first run only)
 ```
 
-**Option 2: Manual Setup**
+### Option 1: Automated Setup (Recommended)
+
+**Windows:**
 ```bash
-# Backend
+# Clone repository
+git clone <your-repo-url>
+cd movieReview
+
+# Run everything
+run_all.bat
+```
+
+**Manual (if batch files don't work):**
+```bash
+# Terminal 1 - Backend
 cd backend
 python -m venv venv
 venv\Scripts\activate
@@ -170,16 +209,43 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
-# Frontend (new terminal)
+# Terminal 2 - Frontend
 cd frontend
 npm install
 npm start
 ```
 
-### First Run
-- Backend: http://localhost:8000
-- Frontend: http://localhost:3000
-- Admin: http://localhost:8000/admin
+### Option 2: Step-by-Step Setup
+
+**1. Backend Setup**
+```bash
+cd backend
+python -m venv venv
+venv\Scripts\activate              # Windows
+# source venv/bin/activate        # Mac/Linux
+
+pip install -r requirements.txt
+python manage.py migrate
+python test_model.py               # Test ML model (optional)
+python manage.py runserver
+```
+
+**2. Frontend Setup (New Terminal)**
+```bash
+cd frontend
+npm install
+npm start
+```
+
+### Access Application
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000/api/sentiment/
+- **Admin Panel**: http://localhost:8000/admin
+
+### First Run Notes
+- ML model downloads automatically (~500MB)
+- Takes 2-5 minutes on first analysis
+- Subsequent analyses are fast (<1 second)
 
 ---
 
@@ -187,9 +253,12 @@ npm start
 
 | Document | Description |
 |----------|-------------|
-| **[START_HERE.md](START_HERE.md)** | 👈 Quick start guide |
-| **[SETUP_GUIDE.md](SETUP_GUIDE.md)** | Detailed installation |
-| **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** | API reference |
+| **[docs/START_HERE.md](docs/START_HERE.md)** | 👈 **Start here!** Quick setup in 5 minutes |
+| **[docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** | Detailed installation guide |
+| **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** | API endpoints & examples |
+| **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** | Common issues & solutions |
+| **[docs/QUICK_FIX.md](docs/QUICK_FIX.md)** | ML model troubleshooting |
+| **[docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)** | Complete project structure |
 
 ---
 
@@ -199,34 +268,102 @@ npm start
 
 ## 🐛 Troubleshooting
 
+### Quick Fixes
 ```bash
-clean_all.bat    # Clean everything
-build_all.bat    # Rebuild
-run_all.bat      # Start
+clean_all.bat         # Clean all caches
+restart_backend.bat   # Restart backend only
+run_all.bat           # Fresh start
+```
+
+### Common Issues
+
+**1. "বিশ্লেষণে ত্রুটি হয়েছে" Error**
+```bash
+cd backend
+python test_model.py    # Check if model loads
+python test_api.py      # Test API
+```
+
+**2. Backend Not Starting**
+```bash
+cd backend
+venv\Scripts\activate
+pip install --upgrade -r requirements.txt
+python manage.py migrate
+```
+
+**3. Frontend Not Starting**
+```bash
+cd frontend
+rm -rf node_modules package-lock.json
+npm install
+npm start
+```
+
+**4. Port Already in Use**
+```bash
+# Kill process on port 8000 (backend)
+netstat -ano | findstr :8000
+taskkill /PID <PID> /F
+
+# Kill process on port 3000 (frontend)
+netstat -ano | findstr :3000
+taskkill /PID <PID> /F
+```
+
+See **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** for more details.
+
+---
+
+## 🎯 Usage Examples
+
+### Positive Review
+```
+এই সিনেমাটি অসাধারণ ছিল! অভিনয় এবং গল্প দুটোই চমৎকার।
+→ Result: Positive (95% confidence)
+```
+
+### Negative Review  
+```
+বিরক্তিকর সিনেমা, গল্প একদম দুর্বল আর অভিনয়ও জোর করা মনে হয়েছে।
+→ Result: Negative (95% confidence)
+```
+
+### Neutral Review
+```
+সিনেমাটি মোটামুটি ছিল, কিছু ভালো কিছু খারাপ।
+→ Result: Neutral (70% confidence)
 ```
 
 ---
 
+## 🤝 Contributing
 
+Contributions are welcome! Please feel free to submit a Pull Request.
 
----
-
-
-
----
-
-
-
----
-
-
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
+## 📄 License
 
+This project is licensed under the MIT License.
 
 ---
 
+## 👨‍💻 Author
+
+Built for Bangla NLP and Explainable AI research.
+
 ---
 
-**Built for Bangla NLP and Explainable AI research**
+## 🙏 Acknowledgments
+
+- **Model**: nlptown/bert-base-multilingual-uncased-sentiment
+- **Explainability**: LIME (Local Interpretable Model-agnostic Explanations)
+- **UI Icons**: Lucide React
+- **Charts**: Recharts
