@@ -110,17 +110,41 @@ http://localhost:3000
 
 ## 🏗️ Architecture
 
-```
-┌─────────────┐      REST API      ┌──────────────┐      ML Model      ┌─────────────┐
-│   React     │ ◄─────────────────► │   Django     │ ◄─────────────────► │    BERT     │
-│  Frontend   │   JSON (Axios)      │   Backend    │   Transformers     │   + LIME    │
-└─────────────┘                     └──────────────┘                     └─────────────┘
-                                           │
-                                           ▼
-                                    ┌──────────────┐
-                                    │   SQLite     │
-                                    │   Database   │
-                                    └──────────────┘
+```mermaid
+graph TB
+    subgraph Frontend["🎨 Frontend Layer"]
+        A[React App]
+        A1[Pages]
+        A2[Components]
+        A3[API Service]
+    end
+    
+    subgraph Backend["⚙️ Backend Layer"]
+        B[Django REST API]
+        B1[Views]
+        B2[ML Service]
+    end
+    
+    subgraph ML["🤖 ML Layer"]
+        C[mBERT + LIME]
+        C1[Sentiment]
+        C2[Explainability]
+    end
+    
+    subgraph Data["💾 Data Layer"]
+        D[(SQLite)]
+    end
+    
+    A -->|HTTP/JSON| B
+    B -->|Process| C
+    C -->|Results| B
+    B <-->|Store/Retrieve| D
+    B -->|Response| A
+    
+    style Frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    style Backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    style ML fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    style Data fill:#e8f5e9,stroke:#388e3c,stroke-width:3px
 ```
 
 ---
