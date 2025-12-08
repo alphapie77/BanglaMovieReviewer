@@ -50,20 +50,20 @@ http://localhost:3000
 ## 📸 Screenshots
 
 ### Home Page
-<!-- Add screenshot here -->
-![Home Page](screenshots/home.png)
+![Home Page](screenshots/home.jpeg)
 
 ### Analyzer Page
-<!-- Add screenshot here -->
-![Analyzer](screenshots/analyzer.png)
+![Analyzer](screenshots/analyzer.jpeg)
 
 ### Results with Charts
-<!-- Add screenshot here -->
-![Results](screenshots/results.png)
+![Results 1](screenshots/output1.jpeg)
+![Results 2](screenshots/output2.jpeg)
 
 ### Analysis History
-<!-- Add screenshot here -->
-![History](screenshots/history.png)
+![History](screenshots/history.jpeg)
+
+### About Page
+![About](screenshots/about.jpeg)
 
 ---
 

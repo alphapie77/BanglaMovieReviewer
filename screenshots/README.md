@@ -1,14 +1,12 @@
 # Screenshots
 
-Add your application screenshots here:
+Application screenshots:
 
-- `home.png` - Home/Landing page
-- `analyzer.png` - Analyzer page with input form
-- `results.png` - Results page with charts
-- `history.png` - Analysis history page
+- `home.jpeg` - Home/Landing page
+- `analyzer.jpeg` - Analyzer page with input form
+- `output1.jpeg` - Results page with charts (example 1)
+- `output2.jpeg` - Results page with charts (example 2)
+- `history.jpeg` - Analysis history page
+- `about.jpeg` - About page
 
-## How to Add Screenshots
-
-1. Take screenshots of your running application
-2. Save them in this folder with the names above
-3. They will automatically appear in the main README.md
+These screenshots are automatically displayed in the main README.md file.
