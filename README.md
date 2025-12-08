@@ -192,17 +192,6 @@ movieReview/
 
 ---
 
-## 📊 How It Works
-
-1. **User Input** → Enter Bangla movie review
-2. **API Request** → Frontend sends POST to Django
-3. **ML Processing** → BERT predicts sentiment + LIME explains
-4. **Database** → Save analysis to SQLite
-5. **Response** → Return sentiment, confidence, word importance
-6. **Visualization** → Display color-coded results
-
----
-
 ## 🎯 API Endpoints
 
 ```bash
@@ -464,30 +453,6 @@ See **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** for more details.
 ```
 **Result:** ⚖️ Neutral (75% confidence)
 **Analysis:** Detects both positive (ভালো) and negative (দুর্বল) keywords
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-## 👨‍💻 Author
-
-Built for Bangla NLP and Explainable AI research.
 
 ---
 
