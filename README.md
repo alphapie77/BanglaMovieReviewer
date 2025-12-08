@@ -111,22 +111,20 @@ http://localhost:3000
 ## 🏗️ Architecture
 
 ```mermaid
-graph TD
-    A[React Frontend] --> B[Django Backend]
-    B --> C[mBERT Model]
-    C --> D[Sentiment Analysis]
-    D --> E[LIME Explainer]
-    E --> F[Word Importance]
-    F --> G[SQLite Database]
-    G --> H[JSON Response]
-    H --> I[React UI]
-    I --> J[Charts & Display]
-    J -.-> A
+graph LR
+    A[React<br/>Frontend] -->|REST API<br/>JSON| B[Django<br/>Backend]
+    B -->|Process| C[mBERT<br/>Model]
+    C -->|Predict| D[BERT<br/>+ LIME]
+    D -->|Results| B
+    B -->|Store| E[(SQLite<br/>Database)]
+    E -->|Retrieve| B
+    B -->|Response| A
     
-    style A fill:#4CAF50,stroke:#2E7D32,color:#fff
-    style J fill:#2196F3,stroke:#1565C0,color:#fff
-    style F fill:#FF9800,stroke:#E65100,color:#fff
-    style G fill:#9C27B0,stroke:#6A1B9A,color:#fff
+    style A fill:#61dafb,stroke:#20232a,stroke-width:2px,color:#20232a
+    style B fill:#092e20,stroke:#0c4b33,stroke-width:2px,color:#fff
+    style C fill:#ff9800,stroke:#e65100,stroke-width:2px,color:#fff
+    style D fill:#ff6f00,stroke:#e65100,stroke-width:2px,color:#fff
+    style E fill:#9c27b0,stroke:#6a1b9a,stroke-width:2px,color:#fff
 ```
 
 ---
