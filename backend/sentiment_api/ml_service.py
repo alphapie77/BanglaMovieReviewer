@@ -38,57 +38,52 @@ class SentimentAnalyzer:
     def predict_sentiment(self, text):
         self._initialize()
         
-        # Negative keywords for better Bangla detection
+        # Enhanced keyword detection
         negative_words = ['খারাপ', 'বিরক্তিকর', 'দুর্বল', 'বাজে', 'নষ্ট', 'ভয়ানক', 'জোর করা', 'bad', 'worst', 'terrible', 'boring', 'waste']
         positive_words = ['ভালো', 'সুন্দর', 'অসাধারণ', 'চমৎকার', 'দারুণ', 'মজার', 'good', 'great', 'excellent', 'amazing', 'wonderful']
+        neutral_words = ['মোটামুটি', 'সাধারণ', 'এভারেজ', 'মাঝামাঝি', 'ঠিক আছে', 'okay', 'average', 'normal', 'ordinary']
         
         text_lower = text.lower()
         neg_count = sum(1 for word in negative_words if word in text_lower)
         pos_count = sum(1 for word in positive_words if word in text_lower)
+        neu_count = sum(1 for word in neutral_words if word in text_lower)
         
         # Get model prediction
         result = self.model(text)[0]
         label = result['label']
         score = result['score']
         
-        # Convert star rating to sentiment with confidence consideration
-        if '5 star' in label:
-            model_sentiment = "Positive"
-        elif '4 star' in label:
-            model_sentiment = "Positive" if score > 0.5 else "Neutral"
-        elif '3 star' in label:
-            model_sentiment = "Neutral"
-        elif '2 star' in label:
-            model_sentiment = "Negative" if score > 0.5 else "Neutral"
-        elif '1 star' in label:
-            model_sentiment = "Negative"
-        else:
-            model_sentiment = "Neutral"
+        # Map star ratings to sentiment
+        star_map = {
+            '5 star': ('Positive', 0.9),
+            '4 star': ('Positive', 0.75),
+            '3 star': ('Neutral', 0.8),
+            '2 star': ('Negative', 0.75),
+            '1 star': ('Negative', 0.9)
+        }
         
-        # Calculate base confidence
-        base_confidence = score * 100
+        model_sentiment, base_multiplier = star_map.get(label, ('Neutral', 0.5))
+        base_confidence = score * 100 * base_multiplier
         
-        # Keyword-based override (strong signal)
-        if neg_count > pos_count and neg_count >= 2:
-            return "Negative", min(70 + neg_count * 10, 95)
-        elif pos_count > neg_count and pos_count >= 2:
-            return "Positive", min(70 + pos_count * 10, 95)
+        # Strong keyword override
+        if neg_count >= 2 and neg_count > pos_count:
+            return "Negative", min(75 + neg_count * 8, 95)
+        elif pos_count >= 2 and pos_count > neg_count:
+            return "Positive", min(75 + pos_count * 8, 95)
+        elif neu_count >= 2 or (pos_count > 0 and neg_count > 0 and abs(pos_count - neg_count) <= 1):
+            # Clear neutral indicators or mixed sentiment
+            return "Neutral", min(70 + neu_count * 10, 92)
         
-        # Use model prediction with confidence thresholds
+        # Apply realistic confidence ranges
         if model_sentiment == "Positive":
-            confidence = max(base_confidence, 70)  # Boost positive to 70+
-            return "Positive", min(confidence, 99)
+            confidence = max(base_confidence, 72)
+            return "Positive", min(confidence, 98)
         elif model_sentiment == "Negative":
-            confidence = min(base_confidence, 45)  # Cap negative at 45
-            return "Negative", max(confidence, 30)
-        else:  # Neutral - model is uncertain
-            # Neutral should show lower confidence (46-60 range)
-            confidence = base_confidence
-            if confidence < 46:
-                confidence = 46
-            elif confidence > 60:
-                confidence = 60
-            return "Neutral", confidence
+            confidence = max(base_confidence, 35)
+            return "Negative", min(confidence, 45)
+        else:  # Neutral
+            confidence = max(base_confidence, 65)
+            return "Neutral", min(confidence, 88)
     
     def predict_for_lime(self, texts):
         results = []
