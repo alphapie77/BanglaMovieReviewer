@@ -111,40 +111,22 @@ http://localhost:3000
 ## 🏗️ Architecture
 
 ```mermaid
-graph TB
-    subgraph Frontend["🎨 Frontend Layer"]
-        A[React App]
-        A1[Pages]
-        A2[Components]
-        A3[API Service]
-    end
+graph TD
+    A[React Frontend] --> B[Django Backend]
+    B --> C[mBERT Model]
+    C --> D[Sentiment Analysis]
+    D --> E[LIME Explainer]
+    E --> F[Word Importance]
+    F --> G[SQLite Database]
+    G --> H[JSON Response]
+    H --> I[React UI]
+    I --> J[Charts & Display]
+    J -.-> A
     
-    subgraph Backend["⚙️ Backend Layer"]
-        B[Django REST API]
-        B1[Views]
-        B2[ML Service]
-    end
-    
-    subgraph ML["🤖 ML Layer"]
-        C[mBERT + LIME]
-        C1[Sentiment]
-        C2[Explainability]
-    end
-    
-    subgraph Data["💾 Data Layer"]
-        D[(SQLite)]
-    end
-    
-    A -->|HTTP/JSON| B
-    B -->|Process| C
-    C -->|Results| B
-    B <-->|Store/Retrieve| D
-    B -->|Response| A
-    
-    style Frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
-    style Backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
-    style ML fill:#fff3e0,stroke:#f57c00,stroke-width:3px
-    style Data fill:#e8f5e9,stroke:#388e3c,stroke-width:3px
+    style A fill:#4CAF50,stroke:#2E7D32,color:#fff
+    style J fill:#2196F3,stroke:#1565C0,color:#fff
+    style F fill:#FF9800,stroke:#E65100,color:#fff
+    style G fill:#9C27B0,stroke:#6A1B9A,color:#fff
 ```
 
 ---
