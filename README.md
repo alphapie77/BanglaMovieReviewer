@@ -267,6 +267,7 @@ npm start
 | **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** | Common issues & solutions |
 | **[docs/QUICK_FIX.md](docs/QUICK_FIX.md)** | ML model troubleshooting |
 | **[docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)** | Complete project structure |
+| **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** | 🚀 Deploy to production |
 
 ---
 
