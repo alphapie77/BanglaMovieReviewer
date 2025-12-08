@@ -215,7 +215,7 @@ See **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** for details.
 ## 🎯 How It Works
 
 ```mermaid
-graph LR
+graph TD
     A[User Input] --> B[Django Backend]
     B --> C[mBERT Model]
     C --> D[Sentiment Prediction]
@@ -225,6 +225,8 @@ graph LR
     G --> H[JSON Response]
     H --> I[React Frontend]
     I --> J[Charts & Visualization]
+    J --> K[Display Results]
+    K --> L[User Views Analysis]
 ```
 
 ### Analysis Pipeline
