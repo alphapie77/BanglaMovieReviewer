@@ -81,12 +81,13 @@ class SentimentAnalyzer:
         elif model_sentiment == "Negative":
             confidence = min(base_confidence, 45)  # Cap negative at 45
             return "Negative", max(confidence, 30)
-        else:  # Neutral
+        else:  # Neutral - model is uncertain
+            # Neutral should show lower confidence (46-60 range)
             confidence = base_confidence
             if confidence < 46:
                 confidence = 46
-            elif confidence > 69:
-                confidence = 69
+            elif confidence > 60:
+                confidence = 60
             return "Neutral", confidence
     
     def predict_for_lime(self, texts):
