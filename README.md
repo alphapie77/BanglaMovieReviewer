@@ -233,10 +233,10 @@ graph TD
     K --> L[User Views Analysis]
     L -.-> A
     
-    style A fill:#4CAF50,stroke:#2E7D32,color:#fff
-    style L fill:#2196F3,stroke:#1565C0,color:#fff
-    style F fill:#FF9800,stroke:#E65100,color:#fff
-    style G fill:#9C27B0,stroke:#6A1B9A,color:#fff
+    style A fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style L fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style F fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
+    style G fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
 ```
 
 ### Analysis Pipeline
