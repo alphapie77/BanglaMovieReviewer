@@ -2,14 +2,182 @@
 
 ## Deployment Options
 
-### Option 1: Render (Recommended - Free)
-### Option 2: Railway
-### Option 3: Heroku
-### Option 4: AWS/DigitalOcean
+### Option 1: Vercel (Frontend) + PythonAnywhere (Backend) - Free
+### Option 2: Render (Recommended - Free)
+### Option 3: Railway
+### Option 4: Heroku
+### Option 5: AWS/DigitalOcean
 
 ---
 
-## 🎯 Option 1: Render (Free & Easy)
+## 🎯 Option 1: Vercel + PythonAnywhere (Best Free Option)
+
+### A. Deploy Backend on PythonAnywhere
+
+**Prerequisites:**
+- PythonAnywhere account (free): https://www.pythonanywhere.com
+
+**Step 1: Upload Code**
+
+1. Sign up at PythonAnywhere
+2. Go to "Files" tab
+3. Upload your backend folder or clone from GitHub:
+   ```bash
+   git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+   cd BanglaMovieReviewer/backend
+   ```
+
+**Step 2: Create Virtual Environment**
+
+```bash
+# In PythonAnywhere Bash console
+cd ~/BanglaMovieReviewer/backend
+python3.10 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+**Step 3: Configure Web App**
+
+1. Go to "Web" tab
+2. Click "Add a new web app"
+3. Choose "Manual configuration" → Python 3.10
+4. Configure:
+
+**WSGI Configuration** (`/var/www/yourusername_pythonanywhere_com_wsgi.py`):
+```python
+import sys
+import os
+
+path = '/home/yourusername/BanglaMovieReviewer/backend'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'config.settings'
+
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
+```
+
+**Virtualenv**: `/home/yourusername/BanglaMovieReviewer/backend/venv`
+
+**Static files**:
+- URL: `/static/`
+- Directory: `/home/yourusername/BanglaMovieReviewer/backend/staticfiles`
+
+**Step 4: Update Settings**
+
+`backend/config/settings.py`:
+```python
+ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']
+
+CORS_ALLOWED_ORIGINS = [
+    "https://your-app.vercel.app",
+]
+```
+
+**Step 5: Collect Static & Migrate**
+
+```bash
+cd ~/BanglaMovieReviewer/backend
+source venv/bin/activate
+python manage.py collectstatic
+python manage.py migrate
+```
+
+**Step 6: Reload Web App**
+
+Click "Reload" button on Web tab.
+
+**Backend URL**: `https://yourusername.pythonanywhere.com`
+
+---
+
+### B. Deploy Frontend on Vercel
+
+**Prerequisites:**
+- Vercel account (free): https://vercel.com
+- GitHub repository
+
+**Step 1: Update API URL**
+
+`frontend/src/services/api.js`:
+```javascript
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://yourusername.pythonanywhere.com/api';
+```
+
+**Step 2: Create `vercel.json`**
+
+`frontend/vercel.json`:
+```json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "build",
+  "devCommand": "npm start",
+  "installCommand": "npm install"
+}
+```
+
+**Step 3: Deploy to Vercel**
+
+**Method 1: Vercel CLI**
+```bash
+npm install -g vercel
+cd frontend
+vercel
+```
+
+**Method 2: Vercel Dashboard**
+1. Go to https://vercel.com/dashboard
+2. Click "Add New" → "Project"
+3. Import from GitHub
+4. Select repository
+5. Configure:
+   - **Framework Preset**: Create React App
+   - **Root Directory**: `frontend`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `build`
+6. Add Environment Variable:
+   - `REACT_APP_API_URL`: `https://yourusername.pythonanywhere.com/api`
+7. Click "Deploy"
+
+**Frontend URL**: `https://your-app.vercel.app`
+
+**Step 4: Update CORS**
+
+Update PythonAnywhere backend settings with Vercel URL and reload.
+
+---
+
+## ⚠️ PythonAnywhere Limitations
+
+**Free Tier:**
+- ✅ 512MB disk space
+- ✅ 1 web app
+- ✅ Python 3.10
+- ❌ No HTTPS for custom domains
+- ❌ Limited CPU time
+- ⚠️ **ML Model Issue**: 500MB model may exceed disk limit
+
+**Solution for ML Model:**
+
+1. **Use smaller model** (not recommended):
+   ```python
+   model="distilbert-base-uncased-finetuned-sst-2-english"  # 250MB
+   ```
+
+2. **Upgrade to paid plan** ($5/month):
+   - 2GB disk space
+   - More CPU time
+   - Better for ML models
+
+3. **Use external model hosting**:
+   - Host model on HuggingFace Inference API
+   - Call API instead of loading locally
+
+---
+
+## 🎯 Option 2: Render (Free & Easy)
 
 ### Prerequisites
 - GitHub account
@@ -302,12 +470,18 @@ DATABASES = {
 
 | Platform | Backend | Frontend | Total/Month |
 |----------|---------|----------|-------------|
+| **Vercel + PythonAnywhere** | Free* | Free | $0 (or $5 paid) |
 | **Render** | Free (512MB) | Free | $0 |
 | **Railway** | $5 (8GB) | Free | $5 |
 | **Heroku** | $7 (1GB) | Free | $7 |
 | **AWS** | ~$10 | ~$1 | ~$11 |
 
-**Recommendation**: Start with **Render Free** for testing, upgrade to **Railway** if you need more RAM.
+*PythonAnywhere free tier may struggle with 500MB model. Paid plan ($5/month) recommended.
+
+**Recommendations**:
+- **Best Free**: Vercel (frontend) + Render (backend)
+- **Best Paid**: Vercel (frontend) + Railway (backend) - $5/month
+- **Budget Option**: Vercel + PythonAnywhere Paid - $5/month
 
 ---
 
