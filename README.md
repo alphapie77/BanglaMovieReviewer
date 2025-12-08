@@ -219,22 +219,20 @@ See **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** for details.
 ## 🎯 How It Works
 
 ```mermaid
-graph TD
-    A[User Input] --> B[Django Backend]
-    B --> C[mBERT Model]
-    C --> D[Sentiment Prediction]
-    D --> E[LIME Explainer]
-    E --> F[Word Importance]
-    F --> G[SQLite Database]
-    G --> H[JSON Response]
-    H --> I[React Frontend]
-    I --> J[Charts & Visualization]
-    J --> K[Display Results]
-    K --> L[User Views Analysis]
-    L -.-> A
+graph LR
+    A[User<br/>Input] --> B[Django<br/>Backend]
+    B --> C[mBERT<br/>Model]
+    C --> D[Sentiment<br/>Prediction]
+    D --> E[LIME<br/>Explainer]
+    E --> F[Word<br/>Importance]
+    F --> G[(SQLite<br/>Database)]
+    G --> H[JSON<br/>Response]
+    H --> I[React<br/>Frontend]
+    I --> J[Charts &<br/>Visualization]
+    J -.Feedback Loop.-> A
     
     style A fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
-    style L fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
+    style J fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
     style F fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
     style G fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
 ```
