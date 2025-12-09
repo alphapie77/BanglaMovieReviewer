@@ -35,7 +35,8 @@ cd BanglaMovieReviewer
 
 ### Step 2: Run Application
 ```bash
-run_all.bat    # Windows (starts both servers automatically)
+.\run_all.bat    # Windows PowerShell (starts both servers automatically)
+# Or: run_all.bat  # Windows Command Prompt
 ```
 
 ### Step 3: Open Browser
@@ -304,7 +305,8 @@ git clone https://github.com/alphapie77/BanglaMovieReviewer.git
 cd BanglaMovieReviewer
 
 # Run everything
-run_all.bat
+.\run_all.bat    # PowerShell
+# Or: run_all.bat  # Command Prompt
 ```
 
 **Manual (if batch files don't work):**
@@ -379,9 +381,10 @@ npm start
 
 ### Quick Fixes
 ```bash
-clean_all.bat         # Clean all caches
-restart_backend.bat   # Restart backend only
-run_all.bat           # Fresh start
+.\clean_all.bat         # Clean all caches (PowerShell)
+.\restart_backend.bat   # Restart backend only (PowerShell)
+.\run_all.bat           # Fresh start (PowerShell)
+# Note: Omit .\ if using Command Prompt
 ```
 
 ### Common Issues
