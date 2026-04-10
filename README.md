@@ -114,8 +114,8 @@ http://localhost:3000
 ```mermaid
 graph LR
     A[React<br/>Frontend] -->|REST API<br/>JSON| B[Django<br/>Backend]
-    B -->|Process| C[mBERT<br/>Model]
-    C -->|Predict| D[BERT<br/>+ LIME]
+    B -->|Process| C[ML/DL<br/>Model]
+    C -->|Predict| D[Model<br/>+ LIME]
     D -->|Results| B
     B -->|Store| E[(SQLite<br/>Database)]
     E -->|Retrieve| B
