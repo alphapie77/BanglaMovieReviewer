@@ -57,8 +57,12 @@ http://localhost:3000
 ![Analyzer](screenshots/analyzer.jpeg)
 
 ### Results with Charts
-![Results 1](screenshots/output1.jpeg)
-![Results 2](screenshots/output2.jpeg)
+![Results 1](screenshots/pos.jpeg)
+![Results 2](screenshots/posd.jpeg)
+![Results 3](screenshots/neg.jpeg)
+![Results 4](screenshots/negd.jpeg)
+![Results 5](screenshots/output1.jpeg)
+![Results 6](screenshots/output2.jpeg)
 
 ### Analysis History
 ![History](screenshots/history.jpeg)
