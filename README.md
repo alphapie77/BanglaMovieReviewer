@@ -59,6 +59,9 @@ All models hosted on Hugging Face: [`shksabbir7`](https://huggingface.co/shksabb
 ### Analyzer with Model Dropdown
 ![Analyzer](screenshots/image.png)
 
+### History Page
+![History](screenshots/history.jpeg)
+
 ### Positive Result
 ![Positive](screenshots/pos.jpeg)
 
