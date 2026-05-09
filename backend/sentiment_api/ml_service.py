@@ -188,7 +188,7 @@ class SentimentAnalyzer:
         
         for text in texts:
             try:
-                if not text or not isinstance(text, str):
+                if not text or not isinstance(text, str) or len(text.strip()) == 0:
                     results.append([0.33, 0.34, 0.33])
                     continue
                     
@@ -196,38 +196,55 @@ class SentimentAnalyzer:
                     pred = self.model(text[:512])[0]
                     label = pred['label']
                     score = pred['score']
-                    label_map = {'LABEL_0': [0.9, 0.05, 0.05], 'LABEL_1': [0.25, 0.5, 0.25], 'LABEL_2': [0.05, 0.05, 0.9]}
-                    probs = label_map.get(label, [0.33, 0.34, 0.33])
+                    # Create probability distribution based on confidence
+                    if label == 'LABEL_0':  # Negative
+                        probs = [score, (1-score)/2, (1-score)/2]
+                    elif label == 'LABEL_1':  # Neutral
+                        probs = [(1-score)/2, score, (1-score)/2]
+                    else:  # Positive
+                        probs = [(1-score)/2, (1-score)/2, score]
                 elif config['type'] == 'keras':
                     processed_text = self._preprocess_for_keras(text)
                     pred = self.model.predict(processed_text, verbose=0)[0]
                     if isinstance(pred, (list, np.ndarray)):
                         if len(pred) == 3:
-                            probs = list(pred)
+                            # Normalize to ensure sum = 1
+                            probs = np.array(pred)
+                            probs = probs / probs.sum()
+                            probs = probs.tolist()
                         elif len(pred) == 1:
                             prob = float(pred[0])
-                            probs = [1-prob, 0, prob]
+                            # Binary: negative vs positive
+                            probs = [1-prob, 0.0, prob]
                         else:
                             probs = [0.33, 0.34, 0.33]
                     else:
                         prob = float(pred)
-                        probs = [1-prob, 0, prob]
-                else:
-                    pred = self.model.predict([text])[0]
-                    if isinstance(pred, (list, np.ndarray)):
+                        probs = [1-prob, 0.0, prob]
+                else:  # sklearn
+                    # Get probability predictions
+                    if hasattr(self.model, 'predict_proba'):
+                        pred = self.model.predict_proba([text])[0]
                         if len(pred) == 3:
-                            probs = list(pred)
-                        elif len(pred) == 1:
-                            prob = float(pred[0])
-                            probs = [1-prob, 0, prob]
+                            probs = pred.tolist()
+                        elif len(pred) == 2:
+                            # Binary classification: convert to 3-class
+                            probs = [pred[0], 0.0, pred[1]]
                         else:
                             probs = [0.33, 0.34, 0.33]
                     else:
-                        prob = float(pred)
-                        probs = [1-prob, 0, prob]
+                        # Fallback to predict
+                        pred = self.model.predict([text])[0]
+                        if isinstance(pred, (int, np.integer)):
+                            # Class label returned
+                            probs = [0.0, 0.0, 0.0]
+                            probs[int(pred)] = 1.0
+                        else:
+                            probs = [0.33, 0.34, 0.33]
+                
                 results.append(probs)
             except Exception as e:
-                print(f"LIME prediction error: {str(e)}")
+                print(f"LIME prediction error for '{text[:50]}...': {str(e)}")
                 results.append([0.33, 0.34, 0.33])
         
         return np.array(results)
