@@ -1,114 +1,233 @@
 import torch
 import numpy as np
-from transformers import pipeline
+import os
+import sys
+import joblib
+import re
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from tensorflow import keras
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from lime.lime_text import LimeTextExplainer
+from huggingface_hub import hf_hub_download
 import warnings
 warnings.filterwarnings('ignore')
 
+# Fix Unicode print errors on Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    sys.stderr.reconfigure(encoding='utf-8', errors='replace')
+
+BASE_MODEL_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), '..', 'best2_models_per_family')
+
+MODEL_CONFIGS = {
+    # Transformer models - Load directly from Hugging Face
+    'BanglaBERT': {
+        'path': 'shksabbir7/bangla-movie-sentiment-banglabert',
+        'type': 'transformer'
+    },
+    'mBERT': {
+        'path': 'shksabbir7/bangla-movie-sentiment-mbert',
+        'type': 'transformer'
+    },
+    
+    # Deep Learning models - Download from Hugging Face
+    'CNN': {
+        'path': 'shksabbir7/bangla-movie-sentiment-cnn',
+        'type': 'keras',
+        'file': 'CNN_best.keras'
+    },
+    'Masked_LSTM': {
+        'path': 'shksabbir7/bangla-movie-sentiment-lstm',
+        'type': 'keras',
+        'file': 'LSTM_masked_best.keras'
+    },
+    
+    # Classical ML models - Download from Hugging Face
+    'LightGBM': {
+        'path': 'shksabbir7/bangla-movie-sentiment-lightgbm',
+        'type': 'sklearn',
+        'file': 'LightGBM_pipeline.joblib'
+    },
+    'Logistic_Regression': {
+        'path': 'shksabbir7/bangla-movie-sentiment-logreg',
+        'type': 'sklearn',
+        'file': 'Logistic_Regression_pipeline.joblib'
+    }
+}
+
 class SentimentAnalyzer:
-    def __init__(self):
+    def __init__(self, model_name='BanglaBERT'):
+        self.model_name = model_name
         self.model = None
+        self.tokenizer = None
+        self.keras_tokenizer = None
         self.explainer = None
         self._initialized = False
+        # Different max lengths for different models
+        self.max_lengths = {
+            'CNN': 160,
+            'Masked_LSTM': 160,
+            'default': 100
+        }
     
     def _initialize(self):
         if self._initialized:
             return
         
         try:
-            print("[INFO] Loading ML model...")
-            # Use multilingual BERT - supports 104 languages including Bangla
-            self.model = pipeline(
-                "sentiment-analysis",
-                model="nlptown/bert-base-multilingual-uncased-sentiment",
-                device=-1
-            )
+            print(f"[INFO] Loading {self.model_name} model...")
+            config = MODEL_CONFIGS[self.model_name]
+            
+            if config['type'] == 'transformer':
+                self.tokenizer = AutoTokenizer.from_pretrained(config['path'])
+                model = AutoModelForSequenceClassification.from_pretrained(config['path'])
+                self.model = pipeline('sentiment-analysis', model=model, tokenizer=self.tokenizer, device=-1)
+            elif config['type'] == 'keras':
+                # Download Keras model from Hugging Face
+                model_path = hf_hub_download(
+                    repo_id=config['path'],
+                    filename=config['file']
+                )
+                self.model = keras.models.load_model(model_path)
+                # Create a simple tokenizer for Keras models
+                self.keras_tokenizer = Tokenizer(num_words=10000, oov_token='<OOV>')
+                # Build vocabulary with common Bangla words
+                sample_texts = [
+                    'ভালো সুন্দর অসাধারণ চমৎকার দারুণ মজার',
+                    'খারাপ বিরক্তিকর দুর্বল বাজে নষ্ট ভয়ানক',
+                    'সিনেমা ছবি মুভি ফিল্ম গান নাচ অভিনয়'
+                ]
+                self.keras_tokenizer.fit_on_texts(sample_texts)
+            elif config['type'] == 'sklearn':
+                # Download sklearn model from Hugging Face
+                model_path = hf_hub_download(
+                    repo_id=config['path'],
+                    filename=config['file']
+                )
+                self.model = joblib.load(model_path)
+            
             self.explainer = LimeTextExplainer(
                 class_names=["Negative", "Neutral", "Positive"],
                 split_expression=lambda x: x.split()
             )
             self._initialized = True
-            print("[SUCCESS] Model loaded successfully!")
+            print(f"[SUCCESS] {self.model_name} loaded successfully!")
         except Exception as e:
             print(f"[ERROR] Model load failed: {str(e)}")
             import traceback
             traceback.print_exc()
             raise
     
+    def _preprocess_for_keras(self, text):
+        """Preprocess text for Keras models (CNN, LSTM)"""
+        # Get max length for this model
+        max_length = self.max_lengths.get(self.model_name, self.max_lengths['default'])
+        # Tokenize and pad
+        sequences = self.keras_tokenizer.texts_to_sequences([text])
+        padded = pad_sequences(sequences, maxlen=max_length, padding='post', truncating='post')
+        return padded
+    
     def predict_sentiment(self, text):
         self._initialize()
         
-        # Enhanced keyword detection
-        negative_words = ['খারাপ', 'বিরক্তিকর', 'দুর্বল', 'বাজে', 'নষ্ট', 'ভয়ানক', 'জোর করা', 'bad', 'worst', 'terrible', 'boring', 'waste']
-        positive_words = ['ভালো', 'সুন্দর', 'অসাধারণ', 'চমৎকার', 'দারুণ', 'মজার', 'good', 'great', 'excellent', 'amazing', 'wonderful']
-        neutral_words = ['মোটামুটি', 'সাধারণ', 'এভারেজ', 'মাঝামাঝি', 'ঠিক আছে', 'okay', 'average', 'normal', 'ordinary']
+        if not text or not isinstance(text, str):
+            raise ValueError("Text must be a non-empty string")
         
-        text_lower = text.lower()
-        neg_count = sum(1 for word in negative_words if word in text_lower)
-        pos_count = sum(1 for word in positive_words if word in text_lower)
-        neu_count = sum(1 for word in neutral_words if word in text_lower)
+        config = MODEL_CONFIGS[self.model_name]
         
-        # Get model prediction
-        result = self.model(text)[0]
-        label = result['label']
-        score = result['score']
-        
-        # Map star ratings to sentiment
-        star_map = {
-            '5 star': ('Positive', 0.9),
-            '4 star': ('Positive', 0.75),
-            '3 star': ('Neutral', 0.8),
-            '2 star': ('Negative', 0.75),
-            '1 star': ('Negative', 0.9)
-        }
-        
-        model_sentiment, base_multiplier = star_map.get(label, ('Neutral', 0.5))
-        base_confidence = score * 100 * base_multiplier
-        
-        # Strong keyword override
-        if neg_count >= 2 and neg_count > pos_count:
-            return "Negative", min(75 + neg_count * 8, 95)
-        elif pos_count >= 2 and pos_count > neg_count:
-            return "Positive", min(75 + pos_count * 8, 95)
-        elif neu_count >= 2 or (pos_count > 0 and neg_count > 0 and abs(pos_count - neg_count) <= 1):
-            # Clear neutral indicators or mixed sentiment
-            return "Neutral", min(70 + neu_count * 10, 92)
-        
-        # Apply realistic confidence ranges
-        if model_sentiment == "Positive":
-            confidence = max(base_confidence, 72)
-            return "Positive", min(confidence, 98)
-        elif model_sentiment == "Negative":
-            confidence = max(base_confidence, 35)
-            return "Negative", min(confidence, 45)
-        else:  # Neutral
-            confidence = max(base_confidence, 65)
-            return "Neutral", min(confidence, 88)
+        try:
+            if config['type'] == 'transformer':
+                result = self.model(text[:512])[0]  # Truncate long text
+                label_map = {'LABEL_0': 'Negative', 'LABEL_1': 'Neutral', 'LABEL_2': 'Positive'}
+                sentiment = label_map.get(result['label'], result['label'])
+                confidence = result['score'] * 100
+                return sentiment, confidence
+            elif config['type'] in ['keras', 'sklearn']:
+                if config['type'] == 'keras':
+                    # Preprocess for Keras models
+                    try:
+                        processed_text = self._preprocess_for_keras(text)
+                        prediction = self.model.predict(processed_text, verbose=0)[0]
+                    except Exception as keras_error:
+                        # Fallback: return neutral prediction if preprocessing fails
+                        print(f"Keras preprocessing error: {keras_error}")
+                        return 'Neutral', 50.0
+                else:
+                    # Sklearn models handle text directly
+                    prediction = self.model.predict([text])[0]
+                
+                # Handle different prediction formats
+                if isinstance(prediction, (list, np.ndarray)):
+                    if len(prediction) == 3:
+                        labels = ['Negative', 'Neutral', 'Positive']
+                        idx = int(np.argmax(prediction))
+                        confidence = float(prediction[idx]) * 100
+                        return labels[idx], confidence
+                    elif len(prediction) == 1:
+                        # Binary classification
+                        prob = float(prediction[0])
+                        if prob > 0.5:
+                            return 'Positive', prob * 100
+                        else:
+                            return 'Negative', (1 - prob) * 100
+                else:
+                    # Single value prediction
+                    prob = float(prediction)
+                    if prob > 0.5:
+                        return 'Positive', prob * 100
+                    else:
+                        return 'Negative', (1 - prob) * 100
+        except Exception as e:
+            print(f"Prediction error: {str(e)}")
+            raise ValueError(f"Failed to predict sentiment: {str(e)}")
     
     def predict_for_lime(self, texts):
         results = []
+        config = MODEL_CONFIGS[self.model_name]
+        
         for text in texts:
             try:
-                pred = self.model(text)[0]
-                label = pred['label']
-                score = pred['score']
-                
-                # Map star ratings to [negative, neutral, positive] probabilities
-                if '5 star' in label:
-                    probs = [0.05, 0.05, 0.90]
-                elif '4 star' in label:
-                    probs = [0.10, 0.20, 0.70]
-                elif '3 star' in label:
-                    probs = [0.25, 0.50, 0.25]
-                elif '2 star' in label:
-                    probs = [0.70, 0.20, 0.10]
-                elif '1 star' in label:
-                    probs = [0.90, 0.05, 0.05]
+                if not text or not isinstance(text, str):
+                    results.append([0.33, 0.34, 0.33])
+                    continue
+                    
+                if config['type'] == 'transformer':
+                    pred = self.model(text[:512])[0]
+                    label = pred['label']
+                    score = pred['score']
+                    label_map = {'LABEL_0': [0.9, 0.05, 0.05], 'LABEL_1': [0.25, 0.5, 0.25], 'LABEL_2': [0.05, 0.05, 0.9]}
+                    probs = label_map.get(label, [0.33, 0.34, 0.33])
+                elif config['type'] == 'keras':
+                    processed_text = self._preprocess_for_keras(text)
+                    pred = self.model.predict(processed_text, verbose=0)[0]
+                    if isinstance(pred, (list, np.ndarray)):
+                        if len(pred) == 3:
+                            probs = list(pred)
+                        elif len(pred) == 1:
+                            prob = float(pred[0])
+                            probs = [1-prob, 0, prob]
+                        else:
+                            probs = [0.33, 0.34, 0.33]
+                    else:
+                        prob = float(pred)
+                        probs = [1-prob, 0, prob]
                 else:
-                    probs = [0.33, 0.34, 0.33]
-                
+                    pred = self.model.predict([text])[0]
+                    if isinstance(pred, (list, np.ndarray)):
+                        if len(pred) == 3:
+                            probs = list(pred)
+                        elif len(pred) == 1:
+                            prob = float(pred[0])
+                            probs = [1-prob, 0, prob]
+                        else:
+                            probs = [0.33, 0.34, 0.33]
+                    else:
+                        prob = float(pred)
+                        probs = [1-prob, 0, prob]
                 results.append(probs)
-            except:
+            except Exception as e:
+                print(f"LIME prediction error: {str(e)}")
                 results.append([0.33, 0.34, 0.33])
         
         return np.array(results)
@@ -129,11 +248,16 @@ class SentimentAnalyzer:
         return exp.as_list(label=pred_class)
     
     def create_colored_html(self, text, word_scores):
-        score_dict = {word: score for word, score in word_scores}
+        if not text:
+            return []
+            
+        score_dict = {word: score for word, score in word_scores if word and score is not None}
         words = text.split()
         
         html_parts = []
         for word in words:
+            if not word:
+                continue
             score = score_dict.get(word, 0)
             
             if score > 0.05:

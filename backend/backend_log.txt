@@ -1,0 +1,516 @@
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778344365.161488   23336 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778344372.191558   23336 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Not Found: /favicon.ico
+[09/May/2026 22:41:25] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:41:25] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:41:25] "GET /favicon.ico HTTP/1.1" 404 2355
+[09/May/2026 22:41:30] "OPTIONS /api/sentiment/analyze/ HTTP/1.1" 200 0
+[09/May/2026 22:41:43] "POST /api/sentiment/analyze/ HTTP/1.1" 200 1281
+[09/May/2026 22:41:49] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:41:49] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+Device set to use cpu
+[09/May/2026 22:43:50] "POST /api/sentiment/analyze/ HTTP/1.1" 200 1030
+[09/May/2026 22:46:43] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:46:47] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:47:07] "POST /api/sentiment/analyze/ HTTP/1.1" 200 533
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:47:09] "POST /api/sentiment/analyze/ HTTP/1.1" 400 48
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:47:11] "POST /api/sentiment/analyze/ HTTP/1.1" 400 139
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:47:13] "POST /api/sentiment/analyze/ HTTP/1.1" 400 71
+[09/May/2026 22:47:33] "POST /api/sentiment/analyze/ HTTP/1.1" 200 729
+[09/May/2026 22:47:35] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:47:49] "POST /api/sentiment/analyze/ HTTP/1.1" 200 521
+Device set to use cpu
+[09/May/2026 22:48:17] "POST /api/sentiment/analyze/ HTTP/1.1" 200 515
+I0000 00:00:1778345300.078954   28200 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+Internal Server Error: /api/sentiment/analyze/
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 75, in predict_sentiment
+    prediction = self.model.predict([text])[0]
+                 ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\utils\traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\trainers\data_adapters\__init__.py", line 163, in get_data_adapter
+    raise ValueError(f"Unrecognized data type: x={x} (of type {type(x)})")
+ValueError: Unrecognized data type: x=['\u09b8\u09bf\u09a8\u09c7\u09ae\u09be\u099f\u09be \u099a\u09ae\u09ce\u0995\u09be\u09b0 \u099b\u09bf\u09b2'] (of type <class 'list'>)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 190, in analyze
+    sentiment, confidence = self.predict_sentiment(text)
+                            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 99, in predict_sentiment
+    print(f"Prediction error: {str(e)}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 46-53: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 48, in analyze
+    result = get_analyzer(model_name).analyze(review_text)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 202, in analyze
+    raise Exception(f"Model processing failed: {str(e)}")
+Exception: Model processing failed: 'charmap' codec can't encode characters in position 46-53: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 74, in analyze
+    print(f"Error in sentiment analysis: {error_details}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 736-743: character maps to <undefined>
+[09/May/2026 22:48:21] "POST /api/sentiment/analyze/ HTTP/1.1" 500 154202
+Internal Server Error: /api/sentiment/analyze/
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 75, in predict_sentiment
+    prediction = self.model.predict([text])[0]
+                 ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\utils\traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\trainers\data_adapters\__init__.py", line 163, in get_data_adapter
+    raise ValueError(f"Unrecognized data type: x={x} (of type {type(x)})")
+ValueError: Unrecognized data type: x=['\u09b8\u09bf\u09a8\u09c7\u09ae\u09be\u099f\u09be \u099a\u09ae\u09ce\u0995\u09be\u09b0 \u099b\u09bf\u09b2'] (of type <class 'list'>)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 190, in analyze
+    sentiment, confidence = self.predict_sentiment(text)
+                            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 99, in predict_sentiment
+    print(f"Prediction error: {str(e)}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 46-53: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 48, in analyze
+    result = get_analyzer(model_name).analyze(review_text)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 202, in analyze
+    raise Exception(f"Model processing failed: {str(e)}")
+Exception: Model processing failed: 'charmap' codec can't encode characters in position 46-53: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 74, in analyze
+    print(f"Error in sentiment analysis: {error_details}")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 736-743: character maps to <undefined>
+[09/May/2026 22:48:24] "POST /api/sentiment/analyze/ HTTP/1.1" 500 154274
+[09/May/2026 22:48:46] "POST /api/sentiment/analyze/ HTTP/1.1" 200 554
+[09/May/2026 22:48:49] "POST /api/sentiment/analyze/ HTTP/1.1" 200 565
+C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 09, 2026 - 22:32:56
+Django version 6.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+[INFO] Loading Logistic_Regression model...
+[SUCCESS] Logistic_Regression loaded successfully!
+[INFO] Loading BanglaBERT model...
+[SUCCESS] BanglaBERT loaded successfully!
+[INFO] Loading mBERT model...
+[SUCCESS] mBERT loaded successfully!
+[INFO] Loading CNN model...
+[SUCCESS] CNN loaded successfully!
+ML Analysis Error: 'charmap' codec can't encode characters in position 46-53: character maps to <undefined>
+[INFO] Loading Masked_LSTM model...
+[SUCCESS] Masked_LSTM loaded successfully!
+ML Analysis Error: 'charmap' codec can't encode characters in position 46-53: character maps to <undefined>
+[INFO] Loading LightGBM model...
+[SUCCESS] LightGBM loaded successfully!
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778345440.141524   15868 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778345452.814636   15868 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[09/May/2026 22:52:53] "GET /api/sentiment/models/ HTTP/1.1" 200 66
+[09/May/2026 22:52:55] "GET /api/sentiment/models/ HTTP/1.1" 200 66
+Device set to use cpu
+[09/May/2026 22:53:15] "POST /api/sentiment/analyze/ HTTP/1.1" 200 529
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:53:17] "POST /api/sentiment/analyze/ HTTP/1.1" 400 48
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:53:19] "POST /api/sentiment/analyze/ HTTP/1.1" 400 119
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:53:21] "POST /api/sentiment/analyze/ HTTP/1.1" 400 71
+[09/May/2026 22:53:38] "POST /api/sentiment/analyze/ HTTP/1.1" 200 730
+[09/May/2026 22:53:40] "GET /api/sentiment/models/ HTTP/1.1" 200 66
+[09/May/2026 22:53:54] "POST /api/sentiment/analyze/ HTTP/1.1" 200 522
+Device set to use cpu
+[09/May/2026 22:54:14] "POST /api/sentiment/analyze/ HTTP/1.1" 200 516
+[09/May/2026 22:54:35] "POST /api/sentiment/analyze/ HTTP/1.1" 200 541
+[09/May/2026 22:54:37] "POST /api/sentiment/analyze/ HTTP/1.1" 200 568
+C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+May 09, 2026 - 22:51:00
+Django version 6.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+[INFO] Loading BanglaBERT model...
+[SUCCESS] BanglaBERT loaded successfully!
+[INFO] Loading mBERT model...
+[SUCCESS] mBERT loaded successfully!
+[INFO] Loading LightGBM model...
+[SUCCESS] LightGBM loaded successfully!
+[INFO] Loading Logistic_Regression model...
+[SUCCESS] Logistic_Regression loaded successfully!
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778345734.755323   23792 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778345745.191414   23792 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Performing system checks...
+
+[09/May/2026 22:57:39] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:57:41] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+Device set to use cpu
+[09/May/2026 22:57:57] "POST /api/sentiment/analyze/ HTTP/1.1" 200 530
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:58:00] "POST /api/sentiment/analyze/ HTTP/1.1" 400 48
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:58:03] "POST /api/sentiment/analyze/ HTTP/1.1" 400 139
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 22:58:05] "POST /api/sentiment/analyze/ HTTP/1.1" 400 71
+[09/May/2026 22:58:24] "POST /api/sentiment/analyze/ HTTP/1.1" 200 732
+[09/May/2026 22:58:26] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 22:58:39] "POST /api/sentiment/analyze/ HTTP/1.1" 200 522
+Device set to use cpu
+[09/May/2026 22:59:00] "POST /api/sentiment/analyze/ HTTP/1.1" 200 516
+I0000 00:00:1778345942.750003   15084 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+Internal Server Error: /api/sentiment/analyze/
+[09/May/2026 22:59:04] "POST /api/sentiment/analyze/ HTTP/1.1" 500 208
+Internal Server Error: /api/sentiment/analyze/
+[09/May/2026 22:59:07] "POST /api/sentiment/analyze/ HTTP/1.1" 500 216
+[09/May/2026 22:59:27] "POST /api/sentiment/analyze/ HTTP/1.1" 200 540
+[09/May/2026 22:59:30] "POST /api/sentiment/analyze/ HTTP/1.1" 200 567
+System check identified no issues (0 silenced).
+May 09, 2026 - 22:55:51
+Django version 6.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+[INFO] Loading BanglaBERT model...
+[SUCCESS] BanglaBERT loaded successfully!
+[INFO] Loading mBERT model...
+[SUCCESS] mBERT loaded successfully!
+[INFO] Loading CNN model...
+[SUCCESS] CNN loaded successfully!
+Prediction error: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+ML Analysis Error: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+Error in sentiment analysis: Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 105, in predict_sentiment
+    prediction = self.model.predict(processed_text, verbose=0)[0]
+                 ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\utils\traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\layers\input_spec.py", line 245, in assert_input_compatibility
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 237, in analyze
+    sentiment, confidence = self.predict_sentiment(text)
+                            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 133, in predict_sentiment
+    raise ValueError(f"Failed to predict sentiment: {str(e)}")
+ValueError: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 54, in analyze
+    result = get_analyzer(model_name).analyze(review_text)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 249, in analyze
+    raise Exception(f"Model processing failed: {str(e)}")
+Exception: Model processing failed: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+[INFO] Loading Masked_LSTM model...
+[SUCCESS] Masked_LSTM loaded successfully!
+Prediction error: Input 0 with name 'input_ids' of layer 'LSTM_Masked' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+ML Analysis Error: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'LSTM_Masked' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+Error in sentiment analysis: Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 105, in predict_sentiment
+    prediction = self.model.predict(processed_text, verbose=0)[0]
+                 ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\utils\traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\layers\input_spec.py", line 245, in assert_input_compatibility
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Input 0 with name 'input_ids' of layer 'LSTM_Masked' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 237, in analyze
+    sentiment, confidence = self.predict_sentiment(text)
+                            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 133, in predict_sentiment
+    raise ValueError(f"Failed to predict sentiment: {str(e)}")
+ValueError: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'LSTM_Masked' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 54, in analyze
+    result = get_analyzer(model_name).analyze(review_text)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 249, in analyze
+    raise Exception(f"Model processing failed: {str(e)}")
+Exception: Model processing failed: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'LSTM_Masked' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+[INFO] Loading LightGBM model...
+[SUCCESS] LightGBM loaded successfully!
+[INFO] Loading Logistic_Regression model...
+[SUCCESS] Logistic_Regression loaded successfully!
+Prediction error: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+ML Analysis Error: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+Error in sentiment analysis: Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 105, in predict_sentiment
+    prediction = self.model.predict(processed_text, verbose=0)[0]
+                 ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\utils\traceback_utils.py", line 122, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "C:\Users\acer\AppData\Roaming\Python\Python313\site-packages\keras\src\layers\input_spec.py", line 245, in assert_input_compatibility
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 237, in analyze
+    sentiment, confidence = self.predict_sentiment(text)
+                            ~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 133, in predict_sentiment
+    raise ValueError(f"Failed to predict sentiment: {str(e)}")
+ValueError: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\views.py", line 54, in analyze
+    result = get_analyzer(model_name).analyze(review_text)
+  File "C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py", line 249, in analyze
+    raise Exception(f"Model processing failed: {str(e)}")
+Exception: Model processing failed: Failed to predict sentiment: Input 0 with name 'input_ids' of layer 'CNN' is incompatible with the layer: expected shape=(None, 160), found shape=(1, 100)
+Internal Server Error: /api/sentiment/analyze/
+[09/May/2026 23:00:06] "POST /api/sentiment/analyze/ HTTP/1.1" 500 208
+C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py changed, reloading.
+
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778346084.032339   10152 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778346102.154284   10152 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Performing system checks...
+
+C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py changed, reloading.
+System check identified no issues (0 silenced).
+May 09, 2026 - 23:01:53
+Django version 6.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778346159.881766   27176 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778346167.157795   27176 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Performing system checks...
+
+[09/May/2026 23:03:49] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:03:51] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+Device set to use cpu
+[09/May/2026 23:04:11] "POST /api/sentiment/analyze/ HTTP/1.1" 200 530
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 23:04:13] "POST /api/sentiment/analyze/ HTTP/1.1" 400 48
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 23:04:15] "POST /api/sentiment/analyze/ HTTP/1.1" 400 139
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 23:04:17] "POST /api/sentiment/analyze/ HTTP/1.1" 400 71
+[09/May/2026 23:04:51] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:04:55,160] - Broken pipe from ('127.0.0.1', 63228)
+[09/May/2026 23:05:14] "POST /api/sentiment/analyze/ HTTP/1.1" 200 526
+Device set to use cpu
+[09/May/2026 23:05:44] "POST /api/sentiment/analyze/ HTTP/1.1" 200 520
+I0000 00:00:1778346347.393857   18920 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[09/May/2026 23:06:15] "POST /api/sentiment/analyze/ HTTP/1.1" 200 551
+E0000 00:00:1778346379.551966   27972 util.cc:131] oneDNN supports DT_BOOL only on platforms with AVX-512. Falling back to the default Eigen-based implementation if present.
+[09/May/2026 23:06:49,733] - Broken pipe from ('127.0.0.1', 52193)
+[09/May/2026 23:07:06] "POST /api/sentiment/analyze/ HTTP/1.1" 200 540
+[09/May/2026 23:07:09] "POST /api/sentiment/analyze/ HTTP/1.1" 200 566
+[09/May/2026 23:08:18] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:08:20] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:08:36] "POST /api/sentiment/analyze/ HTTP/1.1" 200 530
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 23:08:38] "POST /api/sentiment/analyze/ HTTP/1.1" 400 48
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 23:08:40] "POST /api/sentiment/analyze/ HTTP/1.1" 400 139
+Bad Request: /api/sentiment/analyze/
+[09/May/2026 23:08:42] "POST /api/sentiment/analyze/ HTTP/1.1" 400 71
+[09/May/2026 23:09:03] "POST /api/sentiment/analyze/ HTTP/1.1" 200 734
+[09/May/2026 23:09:05] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:09:18] "POST /api/sentiment/analyze/ HTTP/1.1" 200 522
+[09/May/2026 23:09:36] "POST /api/sentiment/analyze/ HTTP/1.1" 200 522
+[09/May/2026 23:09:59] "POST /api/sentiment/analyze/ HTTP/1.1" 200 548
+[09/May/2026 23:10:23] "POST /api/sentiment/analyze/ HTTP/1.1" 200 559
+[09/May/2026 23:10:45] "POST /api/sentiment/analyze/ HTTP/1.1" 200 540
+[09/May/2026 23:10:48] "POST /api/sentiment/analyze/ HTTP/1.1" 200 564
+Not Found: /favicon.ico
+[09/May/2026 23:12:34] "GET /favicon.ico HTTP/1.1" 404 2355
+[09/May/2026 23:12:37] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:12:37] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:12:44] "OPTIONS /api/sentiment/analyze/ HTTP/1.1" 200 0
+[09/May/2026 23:13:12] "POST /api/sentiment/analyze/ HTTP/1.1" 200 1072
+[09/May/2026 23:13:53] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:13:53] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:15:12] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:16:17] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:16:17] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:16:45] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:16:45] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:17:25] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:17:39] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:17:52] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py changed, reloading.
+System check identified no issues (0 silenced).
+May 09, 2026 - 23:02:51
+Django version 6.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+[INFO] Loading BanglaBERT model...
+[SUCCESS] BanglaBERT loaded successfully!
+[INFO] Loading mBERT model...
+[SUCCESS] mBERT loaded successfully!
+[INFO] Loading CNN model...
+[SUCCESS] CNN loaded successfully!
+[INFO] Loading Masked_LSTM model...
+[SUCCESS] Masked_LSTM loaded successfully!
+[INFO] Loading LightGBM model...
+[SUCCESS] LightGBM loaded successfully!
+[INFO] Loading Logistic_Regression model...
+[SUCCESS] Logistic_Regression loaded successfully!
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778347263.955562   14976 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778347277.981267   14976 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Performing system checks...
+
+C:\Users\acer\Downloads\codebase\BanglaMovieReviewer\backend\sentiment_api\ml_service.py changed, reloading.
+System check identified no issues (0 silenced).
+May 09, 2026 - 23:21:31
+Django version 6.0, using settings 'config.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/6.0/howto/deployment/
+Watching for file changes with StatReloader
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778349092.820404   26700 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1778349101.035272   26700 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Performing system checks...
+
+Not Found: /favicon.ico
+[09/May/2026 23:58:43] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:58:43] "GET /favicon.ico HTTP/1.1" 404 2355
+[09/May/2026 23:58:43] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:58:47] "OPTIONS /api/sentiment/analyze/ HTTP/1.1" 200 0
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+I0000 00:00:1778349531.703324   25460 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+[09/May/2026 23:59:03] "POST /api/sentiment/analyze/ HTTP/1.1" 200 1260
+[09/May/2026 23:59:19] "GET /api/sentiment/history/ HTTP/1.1" 200 6828
+[09/May/2026 23:59:19] "GET /api/sentiment/history/ HTTP/1.1" 200 6828
+[09/May/2026 23:59:24] "GET /api/sentiment/models/ HTTP/1.1" 200 86
+[09/May/2026 23:59:24] "GET /api/sentiment/models/ HTTP/1.1" 200 86

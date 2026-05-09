@@ -37,6 +37,13 @@ ml_model/cache/
 *.pt
 *.pth
 
+# Local model files (not needed - models load from Hugging Face)
+best2_models_per_family/
+*.keras
+*.joblib
+*.safetensors
+training_args.bin
+
 # Node
 node_modules/
 npm-debug.log*

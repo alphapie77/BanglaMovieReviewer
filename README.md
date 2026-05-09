@@ -1,542 +1,372 @@
-# 🎬 সিনেমা রিভিউ পরীক্ষক | Bangla Movie Review Sentiment Analyzer
+# 🎬 Bangla Movie Reviewer
 
-<div align="center">
+A full-stack web application for sentiment analysis of Bangla movie reviews using 6 different machine learning models.
 
-**A modern full-stack web application for analyzing Bangla movie reviews with AI-powered sentiment detection and explainability features.**
-
-![Status](https://img.shields.io/badge/status-active-success.svg)
-![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
-![Django](https://img.shields.io/badge/django-4.2.7-green.svg)
-![React](https://img.shields.io/badge/react-18.2.0-blue.svg)
-![mBERT](https://img.shields.io/badge/model-mBERT-orange.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-
-[Live Demo](#) • [Documentation](docs/START_HERE.md) • [Report Bug](https://github.com/alphapie77/BanglaMovieReviewer/issues)
-
-</div>
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Django](https://img.shields.io/badge/Django-4.2.7-green)
+![React](https://img.shields.io/badge/React-18.2-blue)
+![Hugging Face](https://img.shields.io/badge/🤗-Hugging%20Face-yellow)
+![License](https://img.shields.io/badge/License-MIT-red)
 
 ---
 
-## 🚀 Quick Start (3 Steps)
+## ✨ Features
 
-### Step 1: Get the Code
+- 🤖 **6 ML Models** - Choose from Transformer, Deep Learning, and Classical ML models
+- 🇧🇩 **Bangla Support** - Optimized for Bangla language sentiment analysis
+- 🎨 **Beautiful UI** - Modern gradient theme with custom dropdown
+- 📊 **Word Highlighting** - See which words influenced the prediction
+- 📈 **Confidence Scores** - Get prediction confidence percentages
+- 📜 **Analysis History** - Track your previous analyses
+- ⚡ **Fast & Responsive** - Smooth animations and instant feedback
 
-**Option A: Clone with Git**
+---
+
+## 🚀 Quick Start
+
+### One Command Setup:
+
 ```bash
-git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+git clone <your-repo-url>
 cd BanglaMovieReviewer
+.\start.bat
 ```
 
-**Option B: Download ZIP**
-1. Go to: https://github.com/alphapie77/BanglaMovieReviewer
-2. Click green "Code" button → "Download ZIP"
-3. Extract the ZIP file
-4. Open terminal in extracted folder
+**That's it!** Browser opens at http://localhost:3000
 
-### Step 2: Run Application
-```bash
-.\run_all.bat    # Windows PowerShell (starts both servers automatically)
-# Or: run_all.bat  # Windows Command Prompt
-```
+---
 
-### Step 3: Open Browser
-```
-http://localhost:3000
-```
+## 🤖 Available Models
 
-**First time?** Model will download automatically (~500MB, takes 2-5 minutes). See **[docs/START_HERE.md](docs/START_HERE.md)** for detailed setup.
+| Model | Type | Icon | Description |
+|-------|------|------|-------------|
+| **BanglaBERT** | Transformer | 🇧🇩 | Fine-tuned BERT for Bangla |
+| **mBERT** | Transformer | 🌍 | Multilingual BERT |
+| **CNN** | Deep Learning | 🧠 | Convolutional Neural Network |
+| **Masked_LSTM** | Deep Learning | 🔄 | Recurrent Neural Network |
+| **LightGBM** | Classical ML | ⚡ | Gradient Boosting |
+| **Logistic Regression** | Classical ML | 📊 | Linear Classifier |
+
+All models hosted on Hugging Face: [`shksabbir7`](https://huggingface.co/shksabbir7)
 
 ---
 
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](screenshots/home.jpeg)
+![Home](screenshots/home.jpeg)
 
-### Analyzer Page
+### Analyzer with Model Dropdown
 ![Analyzer](screenshots/analyzer.jpeg)
 
-### Results with Charts
-![Results 1](screenshots/pos.jpeg)
-![Results 2](screenshots/posd.jpeg)
-![Results 3](screenshots/neg.jpeg)
-![Results 4](screenshots/negd.jpeg)
-![Results 5](screenshots/output1.jpeg)
-![Results 6](screenshots/output2.jpeg)
+### Positive Result
+![Positive](screenshots/pos.jpeg)
 
-### Analysis History
-![History](screenshots/history.jpeg)
-
-### About Page
-![About](screenshots/about.jpeg)
+### Negative Result
+![Negative](screenshots/neg.jpeg)
 
 ---
 
-## 🎥 Live Demo
+## 🛠️ Tech Stack
 
-**Try it now:** [Live Demo Link](#) *(Coming Soon)*
+### Backend:
+- **Framework:** Django 4.2.7
+- **API:** Django REST Framework
+- **ML Libraries:** Transformers, TensorFlow, PyTorch, LightGBM, Scikit-learn
+- **Model Hub:** Hugging Face Hub
+- **Database:** SQLite
 
-**Test Credentials:** No login required - just start analyzing!
-
----
-
-## ✨ Key Features
-
-### 🤖 AI-Powered Analysis
-- **mBERT Model** - Multilingual BERT supporting 104 languages including Bangla
-- **Real-time Processing** - Instant sentiment classification (<1 second)
-- **High Accuracy** - Keyword-enhanced detection for better Bangla understanding
-- **Confidence Scoring** - Realistic confidence ranges (70%+ positive, 45%- negative, 46-69% neutral)
-
-### 🔍 Explainable AI
-- **LIME Integration** - Shows which words influenced the decision
-- **Visual Word Importance** - Color-coded highlighting (green/red/gray)
-- **Interactive Charts** - Pie chart for confidence, bar chart for word scores
-- **Transparency** - Understand why AI made its decision
-
-### 🎨 Modern User Experience
-- **Multi-page Design** - Home, Analyzer, Results, History, About
-- **Glassmorphism UI** - Professional gradient themes and blur effects
-- **Responsive Design** - Works on desktop, tablet, and mobile
-- **Smooth Animations** - Hover effects and transitions
-- **Professional Tooltips** - Glassy tooltips with smart positioning
-
-### 📊 Data Management
-- **Analysis History** - Automatic storage of all analyses
-- **SQLite Database** - Fast local storage
-- **Export Ready** - Easy to migrate to PostgreSQL for production
-
-### 🌐 Language Support
-- **Bangla Primary** - Optimized for Bangla movie reviews
-- **English Support** - Also works with English text
-- **Mixed Language** - Handles Bangla-English mixed reviews
+### Frontend:
+- **Framework:** React 18.2
+- **HTTP Client:** Axios
+- **Icons:** Lucide React
+- **Routing:** React Router
+- **Styling:** Custom CSS with gradients
 
 ---
 
-## 🏗️ Architecture
+## 📋 Prerequisites
 
-```mermaid
-graph LR
-    A[React<br/>Frontend] -->|REST API<br/>JSON| B[Django<br/>Backend]
-    B -->|Process| C[ML/DL<br/>Model]
-    C -->|Predict| D[Model<br/>+ LIME]
-    D -->|Results| B
-    B -->|Store| E[(SQLite<br/>Database)]
-    E -->|Retrieve| B
-    B -->|Response| A
-    
-    style A fill:#61dafb,stroke:#20232a,stroke-width:2px,color:#20232a
-    style B fill:#092e20,stroke:#0c4b33,stroke-width:2px,color:#fff
-    style C fill:#ff9800,stroke:#e65100,stroke-width:2px,color:#fff
-    style D fill:#ff6f00,stroke:#e65100,stroke-width:2px,color:#fff
-    style E fill:#9c27b0,stroke:#6a1b9a,stroke-width:2px,color:#fff
+- **Python:** 3.8 or higher
+- **Node.js:** 14 or higher
+- **RAM:** 4GB minimum (8GB recommended)
+- **Internet:** Required for first run (model download)
+
+---
+
+## 🔧 Installation
+
+### Option 1: Automated Setup (Recommended)
+
+```bash
+# Clone repository
+git clone <your-repo-url>
+cd BanglaMovieReviewer
+
+# Run setup script (first time: 10-15 minutes)
+.\run_all.bat
 ```
+
+### Option 2: Manual Setup
+
+#### Backend:
+```bash
+cd backend
+python -m venv venv
+call venv\Scripts\activate.bat
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+#### Frontend:
+```bash
+cd frontend
+npm install
+npm start
+```
+
+---
+
+## 🎯 Usage
+
+1. **Start Application:**
+   ```bash
+   .\start.bat
+   ```
+
+2. **Open Browser:** http://localhost:3000
+
+3. **Select Model:** Choose from dropdown (6 models)
+
+4. **Enter Review:** Type Bangla movie review (max 5000 chars)
+
+5. **Analyze:** Click "বিশ্লেষণ করুন"
+
+6. **View Results:**
+   - Sentiment (Positive/Negative/Neutral)
+   - Confidence percentage
+   - Word importance scores
+   - Color-coded word highlighting
+
+---
+
+## 🧪 Testing
+
+### Automated Tests:
+```bash
+cd backend
+call venv\Scripts\activate.bat
+python auto_test.py
+```
+
+**Tests Include:**
+- ✅ Backend connection
+- ✅ Model availability (6 models)
+- ✅ Valid analysis
+- ✅ Input validation
+- ✅ Edge cases
+- ✅ All models working
+
+**Expected:** 7/7 tests pass
 
 ---
 
 ## 📁 Project Structure
 
 ```
-movieReview/
-├── backend/                    # Django REST API + ML Model
-│   ├── config/                 # Django settings
-│   ├── sentiment_api/          # Main API app
-│   ├── requirements.txt        # Python dependencies
-│   ├── test_model.py           # ML model test
-│   └── test_api.py             # API test
-│
-├── frontend/                   # React Application
-│   ├── src/
-│   │   ├── pages/              # Main pages (Home, Analyzer, Result, etc.)
-│   │   ├── components/         # Reusable components
-│   │   ├── services/           # API integration
-│   │   └── App.js              # Router setup
-│   └── package.json            # Node dependencies
-│
-├── docs/                       # 📚 Documentation
-│   ├── START_HERE.md           # Quick start guide
-│   ├── SETUP_GUIDE.md          # Detailed installation
-│   ├── API_DOCUMENTATION.md    # API reference
-│   ├── TROUBLESHOOTING.md      # Common issues
-│   ├── QUICK_FIX.md            # ML model fixes
-│   └── PROJECT_STRUCTURE.md    # Complete structure
-│
-├── ml_model/                   # ML model documentation
-├── *.bat                       # Windows scripts
-└── README.md                   # This file
+BanglaMovieReviewer/
+├── backend/              # Django backend
+│   ├── sentiment_api/   # Main API app
+│   ├── config/          # Django settings
+│   └── requirements.txt # Python dependencies
+├── frontend/            # React frontend
+│   ├── src/            # Source code
+│   └── package.json    # Node dependencies
+├── docs/               # Documentation
+├── screenshots/        # UI screenshots
+├── start.bat          # Quick start script
+└── run_all.bat        # Full setup script
 ```
+
+**Detailed Structure:** See [PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)
 
 ---
 
-## 🔧 Technology Stack
+## 🌐 API Endpoints
 
-### Backend
-- **Framework**: Django 4.2.7 + Django REST Framework 3.14.0
-- **Database**: SQLite (development) / PostgreSQL (production ready)
-- **ML Framework**: PyTorch 2.1.1 + Transformers 4.35.2
-- **ML Model**: mBERT (bert-base-multilingual-uncased-sentiment)
-  - 110M parameters
-  - Supports 104 languages
-  - Fine-tuned for sentiment analysis
-- **Explainability**: LIME 0.2.0.1 (Local Interpretable Model-agnostic Explanations)
-- **API**: RESTful API with CORS support
+### Base URL: `http://localhost:8000/api/sentiment`
 
-### Frontend
-- **Framework**: React 18.2.0 with Hooks
-- **Routing**: React Router v6
-- **HTTP Client**: Axios 1.6.2
-- **Charts**: Recharts 2.10.3 (Pie & Bar charts)
-- **Icons**: Lucide React 0.294.0
-- **Styling**: Custom CSS with Glassmorphism effects
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/models/` | List available models |
+| POST | `/analyze/` | Analyze sentiment |
+| GET | `/history/` | Get analysis history |
 
-### DevOps & Deployment
-- **Version Control**: Git + GitHub
-- **Deployment Options**: Render, Railway, Vercel, PythonAnywhere
-- **Containerization**: Docker ready
-- **CI/CD**: GitHub Actions ready
+**Full API Docs:** See [docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)
 
 ---
 
-## 🎯 API Endpoints
+## 🎨 Features in Detail
 
-```bash
-POST /api/sentiment/analyze/   # Analyze sentiment
-GET  /api/sentiment/history/   # Get last 20 analyses
-GET  /api/sentiment/           # List all analyses
-GET  /api/sentiment/{id}/      # Get specific analysis
-```
+### Custom Model Dropdown:
+- 🎯 6 models with unique icons
+- 💫 Smooth animations
+- 🎨 Gradient background
+- ✨ Hover effects
+- 🔍 Active state highlighting
 
-See **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** for details.
+### Input Validation:
+- ✅ Empty text detection
+- ✅ Character limit (5000)
+- ✅ Real-time counter
+- ✅ Error messages in Bangla
 
----
-
-## 🎯 How It Works
-
-```mermaid
-graph LR
-    A[User<br/>Input] --> B[Django<br/>Backend]
-    B --> C[mBERT<br/>Model]
-    C --> D[Sentiment<br/>Prediction]
-    D --> E[LIME<br/>Explainer]
-    E --> F[Word<br/>Importance]
-    F --> G[(SQLite<br/>Database)]
-    G --> H[JSON<br/>Response]
-    H --> I[React<br/>Frontend]
-    I --> J[Charts &<br/>Visualization]
-    J -.Feedback Loop.-> A
-    
-    style A fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
-    style J fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:#fff
-    style F fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#fff
-    style G fill:#9C27B0,stroke:#6A1B9A,stroke-width:2px,color:#fff
-```
-
-### Analysis Pipeline
-
-1. **Input Processing**
-   - User enters Bangla/English review
-   - Text preprocessing and validation
-
-2. **Sentiment Detection**
-   - mBERT model predicts 1-5 star rating
-   - Keyword enhancement for Bangla accuracy
-   - Confidence calculation with realistic ranges
-
-3. **Explainability**
-   - LIME generates word importance scores
-   - Color-coding based on positive/negative impact
-   - Visual representation in charts
-
-4. **Storage & Display**
-   - Save to database with timestamp
-   - Display results with interactive charts
-   - Show in history for future reference
+### Results Display:
+- 📊 Sentiment classification
+- 💯 Confidence percentage
+- 🎨 Word highlighting
+- 📈 Importance scores
+- 🔄 Easy model switching
 
 ---
 
-## 🎓 Academic & Research Value
+## 🚀 Deployment
 
-### Research Contributions
+### Hugging Face Models:
+All models automatically download from Hugging Face on first use. No large files in repository!
 
-1. **Explainable AI for Bangla NLP**
-   - Novel application of LIME to Bangla sentiment analysis
-   - Demonstrates interpretability in low-resource languages
-   - Bridges gap between accuracy and transparency
-
-2. **Hybrid Approach**
-   - Combines deep learning (mBERT) with rule-based keywords
-   - Improves accuracy for Bangla-specific expressions
-   - Balances model confidence with linguistic patterns
-
-3. **Full-Stack ML System**
-   - End-to-end implementation from model to deployment
-   - Production-ready architecture
-   - Scalable and maintainable codebase
-
-4. **User-Centric Design**
-   - Focus on interpretability and trust
-   - Visual explanations for non-technical users
-   - Real-world applicability
-
-### Suitable For
-
-- 📚 **Thesis Projects** - NLP, ML, Web Development
-- 🎓 **Academic Papers** - Explainable AI, Sentiment Analysis
-- 💼 **Portfolio Projects** - Full-stack development showcase
-- 🔬 **Research** - Bangla NLP, Low-resource languages
-- 📊 **Case Studies** - AI transparency and interpretability
-
----
-
-## 🚀 Installation Guide
-
-### Prerequisites
-```
-✓ Python 3.8 or higher
-✓ Node.js 16 or higher  
-✓ Git
-✓ 4GB+ RAM (for ML model)
-✓ 2GB+ free disk space
-✓ Internet connection (first run only)
-```
-
-### Option 1: Automated Setup (Recommended)
-
-**Windows:**
+### Environment Variables:
 ```bash
-# Clone repository
-git clone https://github.com/alphapie77/BanglaMovieReviewer.git
-cd BanglaMovieReviewer
-
-# Run everything
-.\run_all.bat    # PowerShell
-# Or: run_all.bat  # Command Prompt
+DJANGO_SECRET_KEY=your-secret-key
+DEBUG=False
+ALLOWED_HOSTS=your-domain.com
 ```
 
-**Manual (if batch files don't work):**
-```bash
-# Terminal 1 - Backend
-cd backend
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+### Deploy to:
+- Heroku
+- Railway
+- Render
+- AWS
+- Google Cloud
 
-# Terminal 2 - Frontend
-cd frontend
-npm install
-npm start
-```
-
-### Option 2: Step-by-Step Setup
-
-**1. Backend Setup**
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate              # Windows
-# source venv/bin/activate        # Mac/Linux
-
-pip install -r requirements.txt
-python manage.py migrate
-python test_model.py               # Test ML model (optional)
-python manage.py runserver
-```
-
-**2. Frontend Setup (New Terminal)**
-```bash
-cd frontend
-npm install
-npm start
-```
-
-### Access Application
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000/api/sentiment/
-- **Admin Panel**: http://localhost:8000/admin
-
-### First Run Notes
-- ML model downloads automatically (~500MB)
-- Takes 2-5 minutes on first analysis
-- Subsequent analyses are fast (<1 second)
+**Deployment Guide:** See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
 
 ---
 
 ## 📚 Documentation
 
-| Document | Description |
-|----------|-------------|
-| **[docs/START_HERE.md](docs/START_HERE.md)** | 👈 **Start here!** Quick setup in 5 minutes |
-| **[docs/SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** | Detailed installation guide |
-| **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** | API endpoints & examples |
-| **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** | Common issues & solutions |
-| **[docs/QUICK_FIX.md](docs/QUICK_FIX.md)** | ML model troubleshooting |
-| **[docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md)** | Complete project structure |
-| **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)** | 🚀 Deploy to production |
-
----
-
-
-
----
-
-## 🐛 Troubleshooting
-
-### Quick Fixes
-```bash
-.\clean_all.bat         # Clean all caches (PowerShell)
-.\restart_backend.bat   # Restart backend only (PowerShell)
-.\run_all.bat           # Fresh start (PowerShell)
-# Note: Omit .\ if using Command Prompt
-```
-
-### Common Issues
-
-**1. "বিশ্লেষণে ত্রুটি হয়েছে" Error**
-```bash
-cd backend
-python test_model.py    # Check if model loads
-python test_api.py      # Test API
-```
-
-**2. Backend Not Starting**
-```bash
-cd backend
-venv\Scripts\activate
-pip install --upgrade -r requirements.txt
-python manage.py migrate
-```
-
-**3. Frontend Not Starting**
-```bash
-cd frontend
-rm -rf node_modules package-lock.json
-npm install
-npm start
-```
-
-**4. Port Already in Use**
-```bash
-# Kill process on port 8000 (backend)
-netstat -ano | findstr :8000
-taskkill /PID <PID> /F
-
-# Kill process on port 3000 (frontend)
-netstat -ano | findstr :3000
-taskkill /PID <PID> /F
-```
-
-See **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** for more details.
-
----
-
-## 🎯 Usage Examples
-
-### Positive Review
-```bangla
-এই সিনেমাটি অসাধারণ ছিল! অভিনয় এবং গল্প দুটোই চমৎকার।
-```
-**Result:** ✅ Positive (95% confidence)
-**Top Words:** অসাধারণ (+0.45), চমৎকার (+0.38), ভালো (+0.32)
-
-### Negative Review  
-```bangla
-বিরক্তিকর সিনেমা, গল্প একদম দুর্বল আর অভিনয়ও জোর করা মনে হয়েছে।
-```
-**Result:** ❌ Negative (90% confidence)
-**Top Words:** বিরক্তিকর (-0.52), দুর্বল (-0.41), জোর করা (-0.35)
-
-### Neutral Review
-```bangla
-সিনেমাটি ভালোও না খারাপও না - একদম মাঝামাঝি মানের।
-```
-**Result:** ⚖️ Neutral (80% confidence)
-**Top Words:** মাঝামাঝি (0.12), মানের (0.08), না (-0.05)
-
-### Mixed Sentiment
-```bangla
-অভিনয় ভালো ছিল কিন্তু গল্প একটু দুর্বল।
-```
-**Result:** ⚖️ Neutral (75% confidence)
-**Analysis:** Detects both positive (ভালো) and negative (দুর্বল) keywords
-
----
-
-## 📊 Performance Metrics
-
-- **Model Size**: 500MB (mBERT)
-- **First Load**: 30-60 seconds (model download + initialization)
-- **Analysis Speed**: <1 second per review
-- **Accuracy**: ~85-90% on Bangla movie reviews
-- **Languages Supported**: 104 (optimized for Bangla)
-- **Concurrent Users**: Scalable with proper deployment
+- **[PROJECT_DOCUMENTATION.md](PROJECT_DOCUMENTATION.md)** - Complete project overview
+- **[SETUP_GUIDE.md](SETUP_GUIDE.md)** - Detailed setup instructions
+- **[docs/API_DOCUMENTATION.md](docs/API_DOCUMENTATION.md)** - API reference
+- **[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)** - Common issues
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### How to Contribute
-
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Areas for Contribution
-
-- 🌐 Add more language support
-- 🎨 Improve UI/UX design
-- 🧪 Add more test cases
-- 📊 Enhance visualization
-- 🚀 Optimize performance
-- 📝 Improve documentation
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
 ---
 
-## 📄 License
+## 🐛 Troubleshooting
+
+### Backend won't start:
+```bash
+cd backend
+call venv\Scripts\activate.bat
+pip install -r requirements.txt
+python manage.py migrate
+```
+
+### Frontend won't start:
+```bash
+cd frontend
+npm install
+npm start
+```
+
+### Models not downloading:
+- Check internet connection
+- Verify Hugging Face is accessible
+- Wait patiently (first download takes 2-3 min per model)
+
+**More Solutions:** See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)
+
+---
+
+## 📊 Model Performance
+
+| Model | Accuracy | Speed | Size |
+|-------|----------|-------|------|
+| BanglaBERT | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Large |
+| mBERT | ⭐⭐⭐⭐ | ⭐⭐⭐ | Large |
+| CNN | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | Medium |
+| Masked_LSTM | ⭐⭐⭐⭐ | ⭐⭐⭐ | Medium |
+| LightGBM | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Small |
+| Logistic Regression | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Small |
+
+---
+
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 👨‍💻 Author
+## 👨💻 Author
 
-**Built with ❤️ for Bangla NLP and Explainable AI research**
+**Hugging Face Models:** [shksabbir7](https://huggingface.co/shksabbir7)
 
-- GitHub: [@alphapie77](https://github.com/alphapie77)
-- Project Link: [BanglaMovieReviewer](https://github.com/alphapie77/BanglaMovieReviewer)
+**Models:**
+- [bangla-movie-sentiment-banglabert](https://huggingface.co/shksabbir7/bangla-movie-sentiment-banglabert)
+- [bangla-movie-sentiment-mbert](https://huggingface.co/shksabbir7/bangla-movie-sentiment-mbert)
+- [bangla-movie-sentiment-cnn](https://huggingface.co/shksabbir7/bangla-movie-sentiment-cnn)
+- [bangla-movie-sentiment-lstm](https://huggingface.co/shksabbir7/bangla-movie-sentiment-lstm)
+- [bangla-movie-sentiment-lightgbm](https://huggingface.co/shksabbir7/bangla-movie-sentiment-lightgbm)
+- [bangla-movie-sentiment-logreg](https://huggingface.co/shksabbir7/bangla-movie-sentiment-logreg)
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **ML Model**: [nlptown/bert-base-multilingual-uncased-sentiment](https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment)
-- **Explainability**: [LIME](https://github.com/marcotcr/lime) by Marco Tulio Ribeiro
-- **UI Icons**: [Lucide React](https://lucide.dev/)
-- **Charts**: [Recharts](https://recharts.org/)
-- **Inspiration**: Bangla NLP community
+- Hugging Face for model hosting
+- Django & React communities
+- Bangla NLP community
+- All contributors
 
 ---
 
 ## 📞 Support
 
-If you found this project helpful, please give it a ⭐️!
-
-For issues and questions:
-- 🐛 [Report Bug](https://github.com/alphapie77/BanglaMovieReviewer/issues)
-- 💡 [Request Feature](https://github.com/alphapie77/BanglaMovieReviewer/issues)
-- 📧 [Contact](https://github.com/alphapie77)
+- **Issues:** [GitHub Issues](your-repo/issues)
+- **Documentation:** [docs/](docs/)
+- **Email:** your-email@example.com
 
 ---
 
-<div align="center">
+## 🎉 Quick Commands
 
-**Made with 🎬 for Bangla Cinema Lovers**
+```bash
+# First time setup
+.\run_all.bat
 
-[⬆ Back to Top](#-সিনেমা-রিভিউ-পরীক্ষক--bangla-movie-review-sentiment-analyzer)
+# Daily usage
+.\start.bat
 
-</div>
+# Run tests
+cd backend && python auto_test.py
+
+# Stop servers
+# Close both terminal windows
+```
+
+---
+
+**Made with ❤️ for Bangla NLP**
+
+**Star ⭐ this repo if you find it useful!**

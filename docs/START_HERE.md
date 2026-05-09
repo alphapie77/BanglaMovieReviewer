@@ -1,242 +1,185 @@
-# 🎬 সিনেমা রিভিউ পরীক্ষক - Quick Start Guide
+# 🚀 START HERE - Quick Start Guide
 
-> **👋 Welcome!** This guide will help you run the project in 5 minutes.
+## Welcome to Bangla Movie Reviewer!
+
+This guide will get you up and running in 5 minutes.
 
 ---
 
 ## ⚡ Super Quick Start
 
-### Option A: With Git (3 Commands)
 ```bash
-# 1. Clone the repository
-git clone https://github.com/alphapie77/BanglaMovieReviewer.git
+# 1. Clone repository
+git clone <your-repo-url>
 cd BanglaMovieReviewer
 
-# 2. Run everything
-run_all.bat
+# 2. Run this ONE command
+.\start.bat
 
-# 3. Open browser
-# http://localhost:3000
-```
-
-### Option B: Download ZIP (No Git Required)
-1. **Download**: Go to https://github.com/alphapie77/BanglaMovieReviewer
-2. **Extract**: Click "Code" → "Download ZIP" → Extract folder
-3. **Open Terminal**: Right-click extracted folder → "Open in Terminal" or "Command Prompt here"
-4. **Run**: Type `run_all.bat` and press Enter
-5. **Browse**: Open http://localhost:3000
-
-**That's it!** ✅ The application will:
-- Install all dependencies automatically
-- Download ML model (~500MB, first time only)
-- Start both backend and frontend servers
-- Open in your browser
-
----
-
-## 💻 What You Need
-
-### Required Software
-```
-✓ Python 3.8+     (Download: https://python.org)
-✓ Node.js 16+     (Download: https://nodejs.org)
-✓ Git             (Download: https://git-scm.com)
-```
-
-### System Requirements
-```
-✓ RAM: 4GB minimum (8GB recommended)
-✓ Disk: 2GB free space
-✓ Internet: Required for first run
-✓ OS: Windows 10/11, Mac, or Linux
+# 3. Wait 30 seconds
+# 4. Browser opens at http://localhost:3000
+# 5. Done! 🎉
 ```
 
 ---
 
-## 🚀 Step-by-Step Guide
+## 🎯 What You Get
 
-### Step 1: Check Prerequisites
+### 6 ML Models:
+- 🇧🇩 **BanglaBERT** - Best for Bangla
+- 🌍 **mBERT** - Multilingual
+- 🧠 **CNN** - Fast neural network
+- 🔄 **Masked_LSTM** - Recurrent network
+- ⚡ **LightGBM** - Very fast
+- 📊 **Logistic_Regression** - Baseline
+
+### Features:
+- ✨ Beautiful UI with custom dropdown
+- 📊 Sentiment analysis (Positive/Negative/Neutral)
+- 💯 Confidence scores
+- 🎨 Word highlighting
+- 📈 Word importance
+- 📜 Analysis history
+
+---
+
+## 📋 First Time Setup
+
+### Prerequisites:
+- Python 3.8+
+- Node.js 14+
+- 4GB RAM
+- Internet connection
+
+### Installation:
+
 ```bash
-# Check Python
-python --version
-# Should show: Python 3.8.x or higher
-
-# Check Node.js
-node --version
-# Should show: v16.x.x or higher
-
-# Check Git
-git --version
-# Should show: git version 2.x.x
+# Full setup (first time only)
+.\run_all.bat
 ```
 
-### Step 2: Get the Code
+This will:
+1. Create Python virtual environment
+2. Install all dependencies (10-15 min)
+3. Run database migrations
+4. Start backend server
+5. Install frontend dependencies
+6. Start frontend server
+7. Open browser
 
-**Method 1: Clone with Git (Recommended)**
+---
+
+## 🎮 How to Use
+
+### Step 1: Start Application
 ```bash
-git clone https://github.com/alphapie77/BanglaMovieReviewer.git
-cd BanglaMovieReviewer
+.\start.bat
 ```
 
-**Method 2: Download ZIP (No Git Required)**
-1. Visit: https://github.com/alphapie77/BanglaMovieReviewer
-2. Click green "Code" button
-3. Select "Download ZIP"
-4. Extract the downloaded file
-5. Navigate to extracted folder in terminal:
-   ```bash
-   cd path/to/BanglaMovieReviewer
-   ```
+### Step 2: Open Browser
+Goes to: http://localhost:3000
 
-### Step 3: Run Application
+### Step 3: Select Model
+Click dropdown → Choose from 6 models
 
-**Option A: Automatic (Recommended)**
+### Step 4: Enter Review
+Type Bangla movie review (max 5000 characters)
+
+### Step 5: Analyze
+Click "বিশ্লেষণ করুন" button
+
+### Step 6: View Results
+- Sentiment classification
+- Confidence percentage
+- Word highlighting
+- Importance scores
+
+---
+
+## 🌐 Models from Hugging Face
+
+All models automatically download from Hugging Face:
+- No large files in repository
+- First use: 2-3 minutes per model
+- Cached after first download
+- Works anywhere with internet
+
+**Your Models:**
+- `shksabbir7/bangla-movie-sentiment-banglabert`
+- `shksabbir7/bangla-movie-sentiment-mbert`
+- `shksabbir7/bangla-movie-sentiment-cnn`
+- `shksabbir7/bangla-movie-sentiment-lstm`
+- `shksabbir7/bangla-movie-sentiment-lightgbm`
+- `shksabbir7/bangla-movie-sentiment-logreg`
+
+---
+
+## 🧪 Testing
+
 ```bash
-run_all.bat    # Windows
-```
-
-**Option B: Manual**
-```bash
-# Terminal 1 - Backend
 cd backend
-python -m venv venv
-venv\Scripts\activate
+call venv\Scripts\activate.bat
+python auto_test.py
+```
+
+**Expected:** 7/7 tests pass ✅
+
+---
+
+## 🛑 Stopping
+
+Close both terminal windows:
+- Backend Server
+- Frontend Server
+
+---
+
+## 📚 Next Steps
+
+### Learn More:
+- **[README.md](../README.md)** - Project overview
+- **[PROJECT_DOCUMENTATION.md](../PROJECT_DOCUMENTATION.md)** - Complete docs
+- **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** - API reference
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues
+
+### Explore Code:
+- `backend/sentiment_api/ml_service.py` - Model loading
+- `frontend/src/components/AnalyzerForm.js` - Custom dropdown
+- `backend/sentiment_api/views.py` - API endpoints
+
+---
+
+## ⚠️ Common Issues
+
+### Backend won't start:
+```bash
+cd backend
+call venv\Scripts\activate.bat
 pip install -r requirements.txt
 python manage.py migrate
-python manage.py runserver
+```
 
-# Terminal 2 - Frontend  
+### Frontend won't start:
+```bash
 cd frontend
 npm install
 npm start
 ```
 
-### Step 4: Access Application
-```
-Frontend:  http://localhost:3000
-Backend:   http://localhost:8000
-API Docs:  http://localhost:8000/api/sentiment/
-```
-
----
-
-## 🎯 How to Use
-
-### 1. Go to Analyzer Page
-- Click "Analyzer" in navigation menu
-- Or go directly to: http://localhost:3000/analyzer
-
-### 2. Enter Review
-```
-Example (Positive):
-এই সিনেমাটি অসাধারণ ছিল! অভিনয় এবং গল্প দুটোই চমৎকার।
-
-Example (Negative):
-বিরক্তিকর সিনেমা, গল্প একদম দুর্বল।
-```
-
-### 3. Click "বিশ্লেষণ করুন"
-- First analysis takes 30-60 seconds (model loading)
-- Subsequent analyses are instant
-
-### 4. View Results
-- Sentiment: Positive/Negative/Neutral
-- Confidence: Percentage score
-- Charts: Visual representation
-- Word Analysis: Color-coded importance
-
----
-
-## 🐛 Common Issues
-
-### Issue 1: "Backend not running"
+### Port already in use:
 ```bash
-cd backend
-python test_model.py    # Test if model works
-python manage.py runserver
-```
-
-### Issue 2: "Port already in use"
-```bash
-# Kill port 8000
 netstat -ano | findstr :8000
 taskkill /PID <PID> /F
 ```
 
-### Issue 3: "Module not found"
-```bash
-cd backend
-venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### Issue 4: "npm install fails"
-```bash
-cd frontend
-rm -rf node_modules package-lock.json
-npm cache clean --force
-npm install
-```
+**More solutions:** [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
 
 ---
 
-## 📚 More Documentation
+## 🎉 That's It!
 
-| Document | When to Read |
-|----------|-------------|
-| **[SETUP_GUIDE.md](SETUP_GUIDE.md)** | Detailed installation steps |
-| **[API_DOCUMENTATION.md](API_DOCUMENTATION.md)** | Building with the API |
-| **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** | When something breaks |
-| **[QUICK_FIX.md](QUICK_FIX.md)** | ML model issues |
-| **[PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)** | Understanding project organization |
+You're ready to analyze Bangla movie reviews!
 
----
+**Questions?** Check other docs in `docs/` folder.
 
-## 🛠️ Useful Scripts
-
-```bash
-run_all.bat           # Start everything
-start_backend.bat     # Backend only
-start_frontend.bat    # Frontend only
-restart_backend.bat   # Restart backend
-clean_all.bat         # Clean caches
-```
-
----
-
-## 👨💻 Tech Stack
-
-**Backend**
-- Django 4.2.7 (Web framework)
-- Django REST Framework (API)
-- PyTorch (ML framework)
-- Transformers (BERT model)
-- LIME (Explainability)
-
-**Frontend**
-- React 18.2.0 (UI framework)
-- React Router (Navigation)
-- Recharts (Data visualization)
-- Axios (HTTP client)
-- Lucide React (Icons)
-
-**Database**
-- SQLite (Development)
-
----
-
-## ❓ Need Help?
-
-1. Check **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)**
-2. Run test scripts:
-   ```bash
-   cd backend
-   python test_model.py
-   python test_api.py
-   ```
-3. Check backend terminal for error messages
-4. Check browser console (F12) for frontend errors
-
----
-
-**Happy Analyzing! 🎉**
+**Happy Analyzing! 🎬🇧🇩**

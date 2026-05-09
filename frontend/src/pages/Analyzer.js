@@ -9,28 +9,38 @@ function Analyzer() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleAnalyze = async (reviewText) => {
+  const handleAnalyze = async (reviewText, modelName) => {
     setLoading(true);
     setError(null);
     
     try {
-      const data = await analyzeSentiment(reviewText);
+      const data = await analyzeSentiment(reviewText, modelName);
+      
+      if (!data || !data.sentiment) {
+        throw new Error('Invalid response from server');
+      }
+      
       navigate('/result', { state: { result: data } });
     } catch (err) {
       let errorMsg = 'বিশ্লেষণে ত্রুটি হয়েছে। ';
       
       if (err.code === 'ERR_NETWORK') {
         errorMsg += 'Backend server চালু আছে কিনা পরীক্ষা করুন (http://localhost:8000)';
+      } else if (err.response?.status === 400) {
+        errorMsg += err.response.data?.error || 'Invalid request';
       } else if (err.response?.status === 500) {
         errorMsg += 'ML model load হতে সমস্যা হয়েছে। Backend logs দেখুন।';
       } else if (err.response?.data?.error) {
         errorMsg += err.response.data.error;
+      } else if (err.message) {
+        errorMsg += err.message;
       } else {
         errorMsg += 'অনুগ্রহ করে আবার চেষ্টা করুন।';
       }
       
       setError(errorMsg);
       console.error('Analysis error:', err);
+    } finally {
       setLoading(false);
     }
   };
